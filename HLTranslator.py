@@ -93,8 +93,8 @@ def updateLoop():
         try:
             with open(PATH, 'r') as f:
                 helperLog = f.read()
-        except Exception:
-            errorBoxQuit('HelperLog not found.\n')
+        except Exception as e:
+            errorBoxQuit('HelperLog not found. ' + str(e))
 
         # Replace room names
         for word in translationDict:
@@ -117,8 +117,8 @@ def updateLoop():
             try:
                 with open(NEWPATH, 'w') as f:
                     f.write(toWrite)
-            except Exception:
-                addText('Cannot write file.\n')
+            except Exception as e:
+                errorBoxQuit('Cannot write translated file. ' + str(e))
 
     prevToWrite = toWrite
     root.after(100, updateLoop)  # Recursion loop
@@ -132,8 +132,8 @@ def writeConfig():
     try:
         with open(CONFIGPATH, 'w') as f:
             f.write(string)
-    except Exception:
-        pass
+    except Exception as e:
+        errorBoxQuit('Cannot write config file. ' + str(e))
 
 
 if __name__ == '__main__':
@@ -214,9 +214,9 @@ if __name__ == '__main__':
             try:
                 r = requests.get(XMLURL, allow_redirects=True)
                 open(XMLPATH, 'wb').write(r.content)
-            except Exception:
+            except Exception as e:
                 errorBoxQuit(
-                    "Could not find or download TranslatorDictionary.xml.")
+                    "Could not find or download TranslatorDictionary.xml. " + str(e))
 
         # Read XML and create dictionary from it
         with open(XMLPATH) as f:
@@ -251,8 +251,8 @@ if __name__ == '__main__':
         addText('Reading JSON file.\n')
         with open(JSONPATH) as json_file:
             translationDict = json.load(json_file)
-    except Exception:
-        addText('Dictionary error.')
+    except Exception as e:
+        errorBoxQuit('Dictionary error. ' + str(e))
 
     # Start main function loop
     prevToWrite = ''
