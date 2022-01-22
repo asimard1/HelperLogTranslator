@@ -12,5 +12,7 @@ No extra files should be needed. If the JSON file is not found, the program will
 
 The "Open File" button will use the app associated with .txt files by default.
 
+If your antivirus keeps the program from download the XML file, try adding the file to the exeptions in your antivirus then trying again, or downloading the folder “usedFiles” from the files.
+
 # Suggestions
 I only code things for personnal use, so I've never really learned how to properly code certain things. This is also the first project I release for other people. If you have any suggestions feel free to DM me on Discord (asimard#8855).

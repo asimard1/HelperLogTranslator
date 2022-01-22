@@ -1,8 +1,3 @@
-# release folders
-build/
-dist/
-__pycache__/
-
 # other files
 getDict.py
 HKGetHint.py
