@@ -8,5 +8,4 @@ getDict.py
 HKGetHint.py
 HKTranslator.spec
 HLTranslator.spec
-mapDict.json
 transitions.py
