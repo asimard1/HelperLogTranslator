@@ -6,9 +6,9 @@ This is based on ManicJamie's translation file (https://github.com/ManicJamie/HK
 The GUI is built using tkinter, in a very inefficient way. Executable built using pyinstaller.
 
 # Use
-The program should be able to work from wherever it is placed. It will automatically find the folder where the Helper Log is located, and will place the translated log in the same location.
+The program should be able to work from wherever it is placed. It will automatically find the folder where the Helper Log is located, and will place the translated log in the same location. Checkboxes let you select what parts of the log you want copied in the new file, to avoid unwanted spoilers for the run.
 
-There is no need to download the xml translation file, as the program will try to download it automatically if it isn't found. If the download fails, you will get an error message and you can try downloading it directly from ManicJamie's github.
+If the xml translation file is not found, the program will automatically try to download it.
 
 The "Open File" button will use the app associated with .txt files by default.
 
