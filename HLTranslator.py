@@ -1,9 +1,10 @@
 import tkinter as tk  # GUI
 from tkinter import scrolledtext as st  # Text widget
 from tkinter import messagebox as mb  # Error box
+import requests  # Get translator from github
 import os  # Check if files exist, create directory and find helperlog
-import requests  # Download translator file if it doesn't exist
 import datetime  # Print update time
+import json  # To read dictionary
 
 
 # For text widget
@@ -15,16 +16,22 @@ PATH = os.getenv('LOCALAPPDATA') + \
 NEWPATH = os.getenv(
     'LOCALAPPDATA') + 'Low/Team Cherry/Hollow Knight/Randomizer 4/Recent/HelperLogTrans.txt'
 # Path for files used by program
-INNERPATH = 'createdFiles'
-XMLURL = 'https://raw.githubusercontent.com/ManicJamie/HKTranslator/master/TranslatorDictionary.xml'
-XMLPATH = INNERPATH + '/TranslatorDictionary.xml'
+INNERPATH = 'usedFiles'
+JSONPATH = INNERPATH + '/mapDict.json'
 CONFIGPATH = INNERPATH + '/config.ini'
+XMLPATH = INNERPATH + '/mapDict.xml'
+XMLURL = 'https://raw.githubusercontent.com/ManicJamie/HKTranslator/master/TranslatorDictionary.xml'
 # All possible blocks in HelperLog.txt
 SETTINGS = ['UNCHECKED REACHABLE LOCATIONS',
             'PREVIEWED LOCATIONS',
             'UNCHECKED REACHABLE TRANSITIONS',
             'CHECKED TRANSITIONS',
             'RESPAWNING ITEMS']
+
+
+def errorBoxQuit(string):
+    mb.showerror("Error", string)
+    quit()
 
 
 def toggleTrans():
@@ -55,6 +62,7 @@ def addText(string):
 
     nbLines = int(main_stext.index('end').split('.')[0]) - 1
     if nbLines >= 10:
+        # Delete first line to keep everything in view
         main_stext.delete('1.0', '2.0')
     main_stext.insert(tk.INSERT, string)
 
@@ -65,6 +73,7 @@ def updateSettings():
     '''Gets which blocks to place in translated file from checkboxes'''
     tab = []
     for i in range(len(varnames)):
+        # Uses general names from setup
         if globals()[varnames[i]].get():
             tab.append(SETTINGS[i])
 
@@ -77,28 +86,42 @@ def updateLoop():
     global toWrite
 
     if running:
+        # Get what to write
         settingsTab = updateSettings()
-        with open(PATH, 'r') as f:
-            ogFile = f.read()
 
-        blocks = ogFile.split('\n\n')
+        # Get helper log contents
+        try:
+            with open(PATH, 'r') as f:
+                helperLog = f.read()
+        except Exception:
+            errorBoxQuit('HelperLog not found.\n')
 
+        # Replace room names
+        for word in translationDict:
+            helperLog = helperLog.replace(word, translationDict[word])
+
+        blocks = helperLog.split('\n\n')
         toWrite = ''
 
         for block in blocks:
+            # Add only wanted blocks
             if block.split('\n')[0] in settingsTab:
                 toWrite += block + '\n\n'
 
-        if toWrite != prevToWrite:
-            # Update file
+        if toWrite != prevToWrite:  # We need to update!
+            # Get update time
             current_time = datetime.datetime.now().strftime("%H:%M:%S")
             addText(f'\nUpdated at {current_time}.')
 
-            with open(NEWPATH, 'w') as f:
-                f.write(toWrite)
+            # Write file
+            try:
+                with open(NEWPATH, 'w') as f:
+                    f.write(toWrite)
+            except Exception:
+                addText('Cannot write file.\n')
 
     prevToWrite = toWrite
-    root.after(100, updateLoop)
+    root.after(100, updateLoop)  # Recursion loop
 
 
 def writeConfig():
@@ -106,8 +129,11 @@ def writeConfig():
     string = ''
     for i in range(len(varnames)):
         string += str(globals()[varnames[i]].get())
-    with open(CONFIGPATH, 'w') as f:
-        f.write(string)
+    try:
+        with open(CONFIGPATH, 'w') as f:
+            f.write(string)
+    except Exception:
+        pass
 
 
 if __name__ == '__main__':
@@ -118,19 +144,24 @@ if __name__ == '__main__':
 
     running = True
 
+    # Main window parameters
     root = tk.Tk()
     root.title('HKTranslator')
 
+    # Frames to place widgets
     top = tk.Frame(root)
     mid = tk.Frame(root)
     checkboxes = tk.Frame(root)
     bot = tk.Frame(root)
 
+    # Place frames in window
     top.pack()
     mid.pack()
     checkboxes.pack()
     bot.pack()
 
+    # If config file exists, read it and check if any problems
+    # If any problems or file is not there, create it
     if os.path.isfile(CONFIGPATH):
         with open(CONFIGPATH, 'r') as f:
             configFile = f.read()
@@ -143,14 +174,15 @@ if __name__ == '__main__':
         configFile = '1' * len(SETTINGS)
         configString = 'Config.ini created.\n'
 
+    # Buttons and text
     toggle_text = tk.StringVar(value='Pause translation')
-
     toggle_button = tk.Button(
         root, textvariable=toggle_text, command=toggleTrans)
     openFile_button = tk.Button(root, text='Open file', command=openFile)
     exit_button = tk.Button(root, text='Exit', command=root.quit)
     main_stext = st.ScrolledText(root, width=TEXT_WIDTH, height=TEXT_HEIGHT)
 
+    # Place buttons and text
     toggle_button.pack(in_=top)
     openFile_button.pack(in_=mid, side=tk.LEFT)
     exit_button.pack(in_=mid, side=tk.LEFT)
@@ -170,25 +202,63 @@ if __name__ == '__main__':
             root, text=checkText, variable=globals()[varname])
         globals()[checkname].pack(in_=checkboxes)
 
+    # Print config status
     addText(configString)
 
-    if not os.path.isfile(XMLPATH):
-        addText('Downloading xml.\n')
-        try:
-            r = requests.get(XMLURL)
-            open(XMLPATH, 'wb').write(r.content)
-        except Exception:
-            mb.showerror(
-                title='Error', message='Could not download TranslatorDictionary.xml. ' +
-                'Check your internet connection and try again or download manually.')
-            quit()
-    else:
-        addText('Translator found.\n')
+    # Read json, or create it
+    if not os.path.isfile(JSONPATH):
+        # Use XML to create JSON
+        if not os.path.isfile(XMLPATH):
+            # Need to download XML
+            addText('Downloading XML.\n')
+            try:
+                r = requests.get(XMLURL, allow_redirects=True)
+                open(XMLPATH, 'wb').write(r.content)
+            except Exception:
+                errorBoxQuit(
+                    "Could not find or download TranslatorDictionary.xml.")
 
-    addText('Translation started.')
+        # Read XML and create dictionary from it
+        with open(XMLPATH) as f:
+            dictStr = f.read()
+        # Isolate old names
+        oldSplit = dictStr.split('<oldName>')
+        oldNames = []
+        for line in oldSplit:
+            if '</oldName>' in line:
+                oldNames.append(line.split('</oldName>')[0])
+        oldSplit = dictStr.split('<newName>')
+        # Isolate new names
+        newNames = []
+        for line in oldSplit:
+            if '</newName>' in line:
+                newNames.append(line.split('</newName>')[0])
+        assert len(oldNames) == len(newNames)  # just in case
+        # Create dictionary
+        locDict = {}
+        # Fill dictionary with extracted names
+        for i in range(len(oldNames)):
+            locDict[oldNames[i]] = newNames[i]
 
+        # Create JSON file
+        addText('Creating JSON file.\n')
+        with open(JSONPATH, "w") as outfile:
+            json.dump(locDict, outfile, indent=4)
+
+    # Create dictionary from JSON file
+    translationDict = {}
+    try:
+        addText('Reading JSON file.\n')
+        with open(JSONPATH) as json_file:
+            translationDict = json.load(json_file)
+    except Exception:
+        addText('Dictionary error.')
+
+    # Start main function loop
     prevToWrite = ''
-
+    addText('Translation started.')
     root.after(10, updateLoop)
     root.mainloop()
+
+    # Write config when program is closed
     writeConfig()
