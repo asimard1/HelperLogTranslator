@@ -1,0 +1,12 @@
+# release folders
+build/
+dist/
+__pycache__/
+
+# other files
+getDict.py
+HKGetHint.py
+HKTranslator.spec
+HLTranslator.spec
+mapDict.json
+transitions.py
