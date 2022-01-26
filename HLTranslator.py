@@ -6,7 +6,8 @@ import os  # Check if files exist, create directory and find helperlog
 import datetime  # Print update time
 import json  # To read dictionary
 
-
+# To change rooms display names type, choices = ['maprando', 'arearando', 'normal']
+RANDOTYPE = 'maprando'
 # For text widget
 TEXT_HEIGHT = 10
 TEXT_WIDTH = 22
@@ -97,8 +98,16 @@ def updateLoop():
             errorBoxQuit('HelperLog not found. ' + str(e))
 
         # Replace room names
-        for word in translationDict:
-            helperLog = helperLog.replace(word, translationDict[word])
+        # TODO different direction ([...]) if map rando
+        # TODO move to block, since only two blocks are changed
+        if RANDOTYPE in ['normal']:
+            for word in translationDict:
+                helperLog = helperLog.replace(word, translationDict[word][0])
+        elif RANDOTYPE in ['maprando', 'arearando']:
+            for word in translationDict:
+                helperLog = \
+                    helperLog.replace(
+                        word, f'{translationDict[word][1]}[{translationDict[word][0]}]')
 
         blocks = helperLog.split('\n\n')
         toWrite = ''
@@ -106,7 +115,14 @@ def updateLoop():
         for block in blocks:
             # Add only wanted blocks
             if block.split('\n')[0] in settingsTab:
-                toWrite += block + '\n\n'
+                if block.split('\n')[0] in \
+                        ['CHECKED TRANSITIONS', 'UNCHECKED REACHABLE TRANSITIONS']:
+                    lines = block.split('\n')[1:]
+                    lines = sorted(lines)
+                    newBlock = block.split('\n')[0] + '\n' + '\n'.join(lines)
+                    toWrite += newBlock + '\n\n'
+                else:
+                    toWrite += block + '\n\n'
 
         if toWrite != prevToWrite:  # We need to update!
             # Get update time
@@ -238,7 +254,18 @@ if __name__ == '__main__':
         locDict = {}
         # Fill dictionary with extracted names
         for i in range(len(oldNames)):
-            locDict[oldNames[i]] = newNames[i]
+            room_name = newNames[i]
+            region_name = newNames[i].split('_')[0]
+            if region_name not in ["Dirtmouth", "Crossroads", "Greenpath", "Fungal",
+                                   "Fog", "Cliffs", "Crystal", "Basin", "Abyss",
+                                   "Grounds", "Edge", "City", "Hive", "Waterways",
+                                   "Deepnest", "Gardens", "Palace", "POP", "Egg",
+                                   "Grimm", "Dream", "Godhome"]:
+                region_name = room_name
+            if region_name == "Invincible_Fearless_Sensual_Mysterious_Enchanting_Vigorous_Diligent_Overwhelming_Gorgeous_Passionate_Terrifying_Beautiful_Zote":
+                region_name = "Godhome"
+
+            locDict[oldNames[i]] = [room_name, region_name]
 
         # Create JSON file
         addText('Creating JSON file.\n')
@@ -253,6 +280,11 @@ if __name__ == '__main__':
             translationDict = json.load(json_file)
     except Exception as e:
         errorBoxQuit('Dictionary error. ' + str(e))
+
+    allAreas = []
+    for x in translationDict:
+        if translationDict[x][1] not in allAreas:
+            allAreas.append(translationDict[x][1])
 
     # Start main function loop
     prevToWrite = ''
