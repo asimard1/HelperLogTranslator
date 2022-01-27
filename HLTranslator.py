@@ -309,6 +309,8 @@ if __name__ == '__main__':
             if room_name == "Black_Egg_Temple":
                 map_name = "Crossroads"
 
+            # TODO: add more regions, maybe also for area rando
+
             locDict[oldNames[i]] = [room_name, room_name_no_area, map_name, '']
 
         # Create JSON file
