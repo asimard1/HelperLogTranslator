@@ -5,9 +5,8 @@ import requests  # Get translator from github
 import os  # Check if files exist, create directory and find helperlog
 import datetime  # Print update time
 import json  # To read dictionary
+# import shutil  # To delete directory, only for testing purposes
 
-# To change rooms display names type, choices = ['maprando', 'arearando', 'normal']
-RANDOTYPE = 'maprando'
 # For text widget
 TEXT_HEIGHT = 10
 TEXT_WIDTH = 22
@@ -22,12 +21,14 @@ JSONPATH = INNERPATH + '/mapDict.json'
 CONFIGPATH = INNERPATH + '/config.ini'
 XMLPATH = INNERPATH + '/mapDict.xml'
 XMLURL = 'https://raw.githubusercontent.com/ManicJamie/HKTranslator/master/TranslatorDictionary.xml'
-# All possible blocks in HelperLog.txt
+# All possible blocs in HelperLog.txt
+# MAP RANDOMIZER MUST GO AT THE END
 SETTINGS = ['UNCHECKED REACHABLE LOCATIONS',
             'PREVIEWED LOCATIONS',
             'UNCHECKED REACHABLE TRANSITIONS',
             'CHECKED TRANSITIONS',
-            'RESPAWNING ITEMS']
+            'RESPAWNING ITEMS',
+            'MAP RANDOMIZER']
 
 
 def errorBoxQuit(string):
@@ -71,9 +72,9 @@ def addText(string):
 
 
 def updateSettings():
-    '''Gets which blocks to place in translated file from checkboxes'''
+    '''Gets which blocs to place in translated file from checkboxes'''
     tab = []
-    for i in range(len(varnames)):
+    for i in range(len(varnames) - 1):
         # Uses general names from setup
         if globals()[varnames[i]].get():
             tab.append(SETTINGS[i])
@@ -97,32 +98,67 @@ def updateLoop():
         except Exception as e:
             errorBoxQuit('HelperLog not found. ' + str(e))
 
-        # Replace room names
-        # TODO different direction ([...]) if map rando
-        # TODO move to block, since only two blocks are changed
-        if RANDOTYPE in ['normal']:
-            for word in translationDict:
-                helperLog = helperLog.replace(word, translationDict[word][0])
-        elif RANDOTYPE in ['maprando', 'arearando']:
-            for word in translationDict:
-                helperLog = \
-                    helperLog.replace(
-                        word, f'{translationDict[word][1]}[{translationDict[word][0]}]')
-
-        blocks = helperLog.split('\n\n')
+        blocs = helperLog.split('\n\n')
         toWrite = ''
 
-        for block in blocks:
-            # Add only wanted blocks
-            if block.split('\n')[0] in settingsTab:
-                if block.split('\n')[0] in \
+        for bloc in blocs:
+            # Add only wanted blocs
+            if bloc.split('\n')[0] in settingsTab:
+                if bloc.split('\n')[0] in \
                         ['CHECKED TRANSITIONS', 'UNCHECKED REACHABLE TRANSITIONS']:
-                    lines = block.split('\n')[1:]
-                    lines = sorted(lines)
-                    newBlock = block.split('\n')[0] + '\n' + '\n'.join(lines)
-                    toWrite += newBlock + '\n\n'
+                    for word in translationDict:
+                        # find position of word and next '['
+                        if word in bloc:
+                            wordPos = bloc.index(word)
+                            bracketPos = bloc.index('[', wordPos)
+                            if not globals()[varnames[-1]].get():
+                                bloc = bloc.replace(
+                                    bloc[wordPos:bracketPos], translationDict[word][0])
+                            else:
+                                # TODO: change [] to reflect position in area
+                                bloc = \
+                                    bloc.replace(
+                                        bloc[wordPos:bracketPos],
+                                        f'{translationDict[word][2]}[{translationDict[word][1]}]')
+
+                    splitbloc = bloc.split('\n')
+                    blocName = splitbloc[0]
+                    lines = splitbloc[1:]
+                    if blocName == "UNCHECKED REACHABLE TRANSITIONS":
+                        newbloc = blocName + '\n' + '\n'.join(sorted(lines))
+                        toWrite += newbloc + '\n\n'
+                    elif blocName == "CHECKED TRANSITIONS":
+                        # Get all reversable transitions
+                        transTab = list(map(
+                            lambda x: x[2:].split('  -->  '),
+                            lines))
+                        reversableTab = []
+                        cyclebloc = 'REVERSABLE ' + blocName
+                        for trans in transTab:
+                            origin = trans[0]
+                            for trans2 in transTab:
+                                if origin == trans2[1] and trans not in reversableTab \
+                                        and trans[::-1] not in reversableTab:
+                                    reversableTab.append(trans)
+                                    # reversableTab.append(trans[::-1])
+
+                        reversableTab = sorted(reversableTab)
+
+                        for x in reversableTab:
+                            if x in transTab:
+                                transTab.remove(x)
+                            if x[::-1] in transTab:
+                                transTab.remove(x[::-1])
+                            cyclebloc += '\n  ' + '  <->  '.join(x)
+
+                        toWrite += cyclebloc + '\n\n'
+
+                        onewaybloc = 'ONEWAY ' + blocName
+                        for x in transTab:
+                            onewaybloc += '\n  ' + '  -->  '.join(x)
+                        toWrite += onewaybloc + '\n\n'
                 else:
-                    toWrite += block + '\n\n'
+                    toWrite += bloc + '\n\n'
 
         if toWrite != prevToWrite:  # We need to update!
             # Get update time
@@ -155,6 +191,8 @@ def writeConfig():
 if __name__ == '__main__':
     '''Main program, defines main variables then begins loop'''
 
+    # if os.path.isdir(INNERPATH):
+    #     shutil.rmtree(INNERPATH)
     if not os.path.isdir(INNERPATH):
         os.mkdir(INNERPATH)
 
@@ -255,17 +293,23 @@ if __name__ == '__main__':
         # Fill dictionary with extracted names
         for i in range(len(oldNames)):
             room_name = newNames[i]
-            region_name = newNames[i].split('_')[0]
-            if region_name not in ["Dirtmouth", "Crossroads", "Greenpath", "Fungal",
-                                   "Fog", "Cliffs", "Crystal", "Basin", "Abyss",
-                                   "Grounds", "Edge", "City", "Hive", "Waterways",
-                                   "Deepnest", "Gardens", "Palace", "POP", "Egg",
-                                   "Grimm", "Dream", "Godhome"]:
-                region_name = room_name
-            if region_name == "Invincible_Fearless_Sensual_Mysterious_Enchanting_Vigorous_Diligent_Overwhelming_Gorgeous_Passionate_Terrifying_Beautiful_Zote":
-                region_name = "Godhome"
+            room_name_no_area = '_'.join(newNames[i].split('_')[1:])
+            map_name = newNames[i].split('_')[0]
+            if map_name not in ["Dirtmouth", "Crossroads", "Greenpath", "Fungal",
+                                "Fog", "Cliffs", "Crystal", "Basin", "Abyss",
+                                "Grounds", "Edge", "City", "Hive", "Waterways",
+                                "Deepnest", "Gardens", "Palace", "POP", "Egg",
+                                "Grimm", "Dream", "Godhome"]:
+                room_name_no_area = room_name
+                map_name = room_name
+            if room_name == 'Dirtmouth':
+                room_name_no_area = room_name
+            if map_name.split('_')[0] == "Invincible":
+                map_name = "Godhome"
+            if room_name == "Black_Egg_Temple":
+                map_name = "Crossroads"
 
-            locDict[oldNames[i]] = [room_name, region_name]
+            locDict[oldNames[i]] = [room_name, room_name_no_area, map_name, '']
 
         # Create JSON file
         addText('Creating JSON file.\n')
