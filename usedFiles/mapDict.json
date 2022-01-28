@@ -879,7 +879,7 @@
         "name": "Crystal_Main_Entrance",
         "short_name": "Main_Entrance",
         "map": "Crystal",
-        "area": "Crystal"
+        "area": "Test_Region_Name"
     },
     "Mines_03": {
         "name": "Crystal_Spike_Grub",
@@ -1406,8 +1406,8 @@
     "Abyss_01": {
         "name": "City_Broken_Elevator",
         "short_name": "Broken_Elevator",
-        "map": "City",
-        "area": "City"
+        "map": "Waterways",
+        "area": "Waterways"
     },
     "Crossroads_49b": {
         "name": "City_Left_Elevator",

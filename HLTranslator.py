@@ -1,14 +1,17 @@
 import tkinter as tk  # GUI
 from tkinter import scrolledtext as st  # Text widget
-from tkinter import messagebox as mb  # Error box
+from tkinter import messagebox as mb
+from black import out
 import requests  # Get translator from github
 import os  # Check if files exist, create directory and find helperlog
 import datetime  # Print update time
 import json  # To read dictionary
 import shutil  # To delete directory, only for testing purposes
+from pyvis.network import Network
+from tkinterweb import HtmlFrame as HF
 
 # For text widget
-TEXT_HEIGHT = 10
+TEXT_HEIGHT = 20
 TEXT_WIDTH = 22
 # Helper log paths
 PATH = os.getenv('LOCALAPPDATA') + \
@@ -21,9 +24,10 @@ JSONPATH = INNERPATH + '/mapDict.json'
 GOODJSONPATH = INNERPATH + '/mapDictR.json'
 CONFIGPATH = INNERPATH + '/config.ini'
 XMLPATH = INNERPATH + '/mapDict.xml'
+GRAPHPATH = INNERPATH + '/graph.html'
 XMLURL = 'https://raw.githubusercontent.com/ManicJamie/HKTranslator/master/TranslatorDictionary.xml'
 # All possible blocs in HelperLog.txt
-# MAP RANDOMIZER MUST GO AT THE END
+# BLOC NAMES MUST BE AT BEGGINING
 SETTINGS = ['UNCHECKED REACHABLE LOCATIONS',
             'PREVIEWED LOCATIONS',
             'UNCHECKED REACHABLE TRANSITIONS',
@@ -63,12 +67,12 @@ def openFile():
         addText('\nFile not found...')
 
 
-def addText(string):
+def addText(string='\n'):
     '''Adds argument to text widget and makes it read only'''
     main_stext.config(state=tk.NORMAL)
 
     nbLines = int(main_stext.index('end').split('.')[0]) - 1
-    if nbLines >= 10:
+    if nbLines >= TEXT_HEIGHT:
         # Delete first line to keep everything in view
         main_stext.delete('1.0', '2.0')
     main_stext.insert(tk.INSERT, string)
@@ -87,10 +91,28 @@ def updateSettings():
     return tab
 
 
+def removeAsterix(outOfLogic, x):
+    if outOfLogic:
+        newTrans = [x[0][1:], x[1]]
+    else:
+        newTrans = x
+
+    return newTrans
+
+
+def addAsterix(outOfLogic, x):
+    if outOfLogic:
+        reverseTrans = ['*' + x[::-1][0], x[::-1][1]]
+    else:
+        reverseTrans = x[::-1]
+
+    return reverseTrans
+
+
 def updateLoop():
     '''Main loop, repeats until window is closed'''
     global prevToWrite
-    global toWrite
+    global prevCheckedBloc
 
     if running:
         # Get what to write
@@ -117,7 +139,7 @@ def updateLoop():
                             wordPos = bloc.index(word)
                             bracketPos = bloc.index('[', wordPos)
                             if not globals()[varnames[MAP_OPTION_POS]].get():
-                                ### This is a map rando
+                                # This is a map rando
                                 mapName = translationDict[word]['map']
                                 shortName = translationDict[word]['short_name']
                                 newName = f"{mapName}[{shortName}]"
@@ -125,7 +147,7 @@ def updateLoop():
                                     bloc[wordPos:bracketPos],
                                     newName)
                             else:
-                                ### This is an area rando
+                                # This is an area rando
                                 areaName = translationDict[word]['area']
                                 shortName = translationDict[word]['short_name']
                                 newName = f"{areaName}[{shortName}]"
@@ -150,23 +172,36 @@ def updateLoop():
                             cyclebloc = 'REVERSABLE ' + blocName
                         else:
                             cyclebloc = 'REPEATED REVERSABLE ' + blocName
+
                         for trans in transTab:
-                            origin = trans[0]
+                            outOfLogic = '*' in trans[0]
+                            newTrans = removeAsterix(outOfLogic, trans)
+                            reverseTrans = addAsterix(outOfLogic, newTrans)
+
+                            origin = newTrans[0]
                             for trans2 in transTab:
-                                if origin == trans2[1] and trans not in reversableTab \
-                                        and trans[::-1] not in reversableTab:
+                                newTrans2 = [trans2[0].replace(
+                                    '*', ''), trans2[1]]
+                                if origin == newTrans2[1] and trans not in reversableTab \
+                                        and reverseTrans not in reversableTab:
                                     reversableTab.append(trans)
                                     if globals()[varnames[-1]].get():
-                                        reversableTab.append(trans[::-1])
+                                        reversableTab.append(reverseTrans)
 
-                        reversableTab = sorted(reversableTab)
+                        def skipAst(x):
+                            return x if x[0][0] != '*' else [x[0][1:], x[1]]
+                        reversableTab = sorted(reversableTab, key=skipAst)
 
-                        for x in reversableTab:
-                            if x in transTab:
-                                transTab.remove(x)
-                            if x[::-1] in transTab:
-                                transTab.remove(x[::-1])
-                            cyclebloc += '\n  ' + '  <->  '.join(x)
+                        for trans in reversableTab:
+                            outOfLogic = '*' in trans[0]
+                            newTrans = removeAsterix(outOfLogic, trans)
+                            reverseTrans = addAsterix(outOfLogic, newTrans)
+
+                            if trans in transTab:
+                                transTab.remove(trans)
+                            if reverseTrans in transTab:
+                                transTab.remove(reverseTrans)
+                            cyclebloc += '\n  ' + '  <->  '.join(trans)
 
                         toWrite += cyclebloc + '\n\n'
 
@@ -174,6 +209,8 @@ def updateLoop():
                         for x in transTab:
                             onewaybloc += '\n  ' + '  -->  '.join(x)
                         toWrite += onewaybloc + '\n\n'
+
+                        checkedBloc = cyclebloc + onewaybloc
                 else:
                     toWrite += bloc + '\n\n'
 
@@ -189,7 +226,12 @@ def updateLoop():
             except Exception as e:
                 errorBoxQuit('Cannot write translated file. ' + str(e))
 
-    prevToWrite = toWrite
+        prevToWrite = toWrite
+
+        if checkedBloc != prevCheckedBloc:
+            drawGraph()
+
+        prevCheckedBloc = checkedBloc
     root.after(100, updateLoop)  # Recursion loop
 
 
@@ -213,9 +255,9 @@ def readConfig():
             configString = 'Config.ini found.\n'
         else:
             configString = 'Config size error.\nConfig.ini created.\n'
-            configFile = '010' + '1' * (len(SETTINGS) - 3)
+            configFile = '1' * len(SETTINGS)
     else:
-        configFile = '010' + '1' * (len(SETTINGS) - 3)
+        configFile = '1' * len(SETTINGS)
         configString = 'Config.ini created.\n'
 
     return configFile, configString
@@ -293,6 +335,8 @@ def createJSON():
             if room_name == "King's_Pass":
                 region_name = map_name
                 map_name = 'Dirtmouth'
+            if room_name == 'City_Broken_Elevator':
+                map_name = 'Waterways'
 
             # TODO: add region randomizer names
             if region_name == '':
@@ -309,6 +353,68 @@ def createJSON():
         addText('Creating JSON file.\n')
         with open(JSONPATH, "w") as outfile:
             json.dump(locDict, outfile, indent=4)
+
+
+def drawGraph():
+    try:
+        with open(PATH, 'r') as f:
+            helperLog = f.read()
+    except Exception as e:
+        errorBoxQuit('HelperLog not found. ' + str(e))
+
+    blocs = helperLog.split('\n\n')
+
+    tab = []
+    for bloc in blocs:
+        if bloc.split('\n')[0] == 'CHECKED TRANSITIONS':
+            lines = bloc.split('\n')[1:]
+            for line in lines:
+                tab.append(line[2:].split('  -->  '))
+
+    net = Network(directed=True)
+    net.set_edge_smooth('dynamic')
+    for connection in tab:
+        loc1 = connection[0].replace('*', '').split('[')[0]
+        loc2 = connection[1].replace('*', '').split('[')[0]
+        if not globals()[varnames[MAP_OPTION_POS]].get():
+            # this is a map rando
+            map_connection = [translationDict[loc1]
+                              ['map'], translationDict[loc2]['map']]
+        else:
+            # this is an area rando
+            map_connection = [translationDict[loc1]
+                              ['area'], translationDict[loc2]['area']]
+        net.add_nodes(map_connection, title=map_connection)
+        net.add_edge(
+            *map_connection, title=connection[0].replace(loc1, translationDict[loc1]['short_name']))
+
+    net.save_graph(GRAPHPATH)
+
+    addText('\nRefresh graph page.')
+
+
+def load_html():
+    with open(GRAPHPATH) as f:
+        htmlFile = f.read()
+
+    # graphWindow.load_html(htmlFile)
+    return htmlFile
+
+
+def openGraph():
+    addText('\nOpening graph.')
+    newWindow = tk.Toplevel(root)
+    newWindow.title('Graph window')
+    graph_url = 'localhost/' + os.path.abspath(GRAPHPATH).replace('\\', '/')
+    print(graph_url)
+    frame = HF(newWindow, messages_enabled=True)
+    # frame.load_file(graph_url, force=True)
+    frame.load_html(load_html())
+    frame.pack()
+    frame.on_done_loading(addText)
+    # graphWindow = webview.create_window('HK Graph')
+    # webview.start(load_html, [graphWindow])
+    # webbrowser.open(graph_url, new=1)
 
 
 if __name__ == '__main__':
@@ -330,12 +436,14 @@ if __name__ == '__main__':
     # Frames to place widgets
     top = tk.Frame(root)
     mid = tk.Frame(root)
+    midBot = tk.Frame(root)
     checkboxes = tk.Frame(root)
     bot = tk.Frame(root)
 
     # Place frames in window
     top.pack()
     mid.pack()
+    midBot.pack()
     checkboxes.pack()
     bot.pack()
 
@@ -349,12 +457,15 @@ if __name__ == '__main__':
         root, textvariable=toggle_text, command=toggleTrans)
     openFile_button = tk.Button(root, text='Open file', command=openFile)
     exit_button = tk.Button(root, text='Exit', command=root.quit)
+    open_graph_button = tk.Button(
+        root, text='Open rando graph', command=openGraph)
     main_stext = st.ScrolledText(root, width=TEXT_WIDTH, height=TEXT_HEIGHT)
 
     # Place buttons and text
     toggle_button.pack(in_=top)
     openFile_button.pack(in_=mid, side=tk.LEFT)
     exit_button.pack(in_=mid, side=tk.LEFT)
+    open_graph_button.pack(in_=midBot)
     main_stext.pack(in_=bot)
 
     # Create checkboxes, probably not a good idea to do so automatically
@@ -376,7 +487,7 @@ if __name__ == '__main__':
 
     # Create JSON dictionary
     # This is where all the region logic is
-    # [IMPORTANT] This is very messy and I will maybe stop updating it...
+    # ***IMPORTANT*** This is very messy and I will maybe stop updating it...
     if os.path.isfile(GOODJSONPATH):
         json_to_read = GOODJSONPATH
     else:
@@ -396,10 +507,12 @@ if __name__ == '__main__':
     for x in translationDict:
         if translationDict[x]['map'] not in allAreas:
             allAreas.append(translationDict[x]['map'])
-    print(allAreas)
+    # print(allAreas)
+    # print(max(list(map(len, allAreas))))
 
     # Start main function loop
     prevToWrite = ''
+    prevCheckedBloc = ''
     addText('Translation started.')
     root.after(10, updateLoop)
     root.mainloop()
