@@ -5,7 +5,7 @@ import requests  # Get translator from github
 import os  # Check if files exist, create directory and find helperlog
 import datetime  # Print update time
 import json  # To read dictionary
-# import shutil  # To delete directory, only for testing purposes
+import shutil  # To delete directory, only for testing purposes
 
 # For text widget
 TEXT_HEIGHT = 10
@@ -18,6 +18,7 @@ NEWPATH = os.getenv(
 # Path for files used by program
 INNERPATH = 'usedFiles'
 JSONPATH = INNERPATH + '/mapDict.json'
+GOODJSONPATH = INNERPATH + '/mapDictR.json'
 CONFIGPATH = INNERPATH + '/config.ini'
 XMLPATH = INNERPATH + '/mapDict.xml'
 XMLURL = 'https://raw.githubusercontent.com/ManicJamie/HKTranslator/master/TranslatorDictionary.xml'
@@ -28,7 +29,11 @@ SETTINGS = ['UNCHECKED REACHABLE LOCATIONS',
             'UNCHECKED REACHABLE TRANSITIONS',
             'CHECKED TRANSITIONS',
             'RESPAWNING ITEMS',
-            'MAP RANDOMIZER']
+            'REGION NAMES',
+            'ADD REVERSED TRANSITIONS']
+# To make stuff automatic, for future updates maybe
+NB_TO_IGNORE = 2
+MAP_OPTION_POS = -2
 
 
 def errorBoxQuit(string):
@@ -74,7 +79,7 @@ def addText(string):
 def updateSettings():
     '''Gets which blocs to place in translated file from checkboxes'''
     tab = []
-    for i in range(len(varnames) - 1):
+    for i in range(len(varnames) - NB_TO_IGNORE):
         # Uses general names from setup
         if globals()[varnames[i]].get():
             tab.append(SETTINGS[i])
@@ -111,15 +116,23 @@ def updateLoop():
                         if word in bloc:
                             wordPos = bloc.index(word)
                             bracketPos = bloc.index('[', wordPos)
-                            if not globals()[varnames[-1]].get():
+                            if not globals()[varnames[MAP_OPTION_POS]].get():
+                                ### This is a map rando
+                                mapName = translationDict[word]['map']
+                                shortName = translationDict[word]['short_name']
+                                newName = f"{mapName}[{shortName}]"
                                 bloc = bloc.replace(
-                                    bloc[wordPos:bracketPos], translationDict[word][0])
+                                    bloc[wordPos:bracketPos],
+                                    newName)
                             else:
-                                # TODO: change [] to reflect position in area
+                                ### This is an area rando
+                                areaName = translationDict[word]['area']
+                                shortName = translationDict[word]['short_name']
+                                newName = f"{areaName}[{shortName}]"
                                 bloc = \
                                     bloc.replace(
                                         bloc[wordPos:bracketPos],
-                                        f'{translationDict[word][2]}[{translationDict[word][1]}]')
+                                        newName)
 
                     splitbloc = bloc.split('\n')
                     blocName = splitbloc[0]
@@ -133,14 +146,18 @@ def updateLoop():
                             lambda x: x[2:].split('  -->  '),
                             lines))
                         reversableTab = []
-                        cyclebloc = 'REVERSABLE ' + blocName
+                        if not globals()[varnames[-1]].get():
+                            cyclebloc = 'REVERSABLE ' + blocName
+                        else:
+                            cyclebloc = 'REPEATED REVERSABLE ' + blocName
                         for trans in transTab:
                             origin = trans[0]
                             for trans2 in transTab:
                                 if origin == trans2[1] and trans not in reversableTab \
                                         and trans[::-1] not in reversableTab:
                                     reversableTab.append(trans)
-                                    # reversableTab.append(trans[::-1])
+                                    if globals()[varnames[-1]].get():
+                                        reversableTab.append(trans[::-1])
 
                         reversableTab = sorted(reversableTab)
 
@@ -188,9 +205,117 @@ def writeConfig():
         errorBoxQuit('Cannot write config file. ' + str(e))
 
 
+def readConfig():
+    if os.path.isfile(CONFIGPATH):
+        with open(CONFIGPATH, 'r') as f:
+            configFile = f.read()
+        if len(configFile) == len(SETTINGS):
+            configString = 'Config.ini found.\n'
+        else:
+            configString = 'Config size error.\nConfig.ini created.\n'
+            configFile = '010' + '1' * (len(SETTINGS) - 3)
+    else:
+        configFile = '010' + '1' * (len(SETTINGS) - 3)
+        configString = 'Config.ini created.\n'
+
+    return configFile, configString
+
+
+def createJSON():
+    """This creates a good dictionary but region names may not be right"""
+    if not os.path.isfile(JSONPATH):
+        # Use XML to create JSON
+        if not os.path.isfile(XMLPATH):
+            # Need to download XML
+            addText('Downloading XML.\n')
+            try:
+                r = requests.get(XMLURL, allow_redirects=True)
+                open(XMLPATH, 'wb').write(r.content)
+            except Exception as e:
+                errorBoxQuit(
+                    "Could not find or download TranslatorDictionary.xml. " + str(e))
+
+        # Read XML and create dictionary from it
+        with open(XMLPATH) as f:
+            dictStr = f.read()
+
+        # Isolate old names
+        oldSplit = dictStr.split('<oldName>')
+        oldNames = []
+        for line in oldSplit:
+            if '</oldName>' in line:
+                oldNames.append(line.split('</oldName>')[0])
+        oldSplit = dictStr.split('<newName>')
+        # Isolate new names
+        newNames = []
+        for line in oldSplit:
+            if '</newName>' in line:
+                newNames.append(line.split('</newName>')[0])
+        assert len(oldNames) == len(newNames)  # just in case
+
+        # Create dictionary
+        locDict = {}
+
+        # Fill dictionary with extracted names
+        # TODO this code could be way more clean, maybe in another function
+        # Could be hardcoded but wouldn't fit with the goal of building the files
+        for i in range(len(oldNames)):
+            room_name = newNames[i]
+            room_name_no_area = '_'.join(newNames[i].split('_')[1:])
+            map_name = newNames[i].split('_')[0]
+            region_name = ''
+            if map_name not in ["Dirtmouth", "Crossroads", "Greenpath", "Fungal",
+                                "Fog", "Cliffs", "Crystal", "Basin", "Abyss",
+                                "Grounds", "Edge", "City", "Hive", "Waterways",
+                                "Deepnest", "Gardens", "Palace", "POP", "Egg",
+                                "Grimm", "Dream", "Godhome"]:
+                room_name_no_area = room_name
+                map_name = room_name
+            if room_name == 'Dirtmouth':
+                room_name_no_area = room_name
+            if map_name.split('_')[0] == "Invincible":
+                map_name = "Godhome"
+            if room_name in ['Black_Egg_Temple', 'Salubra']:
+                map_name = "Crossroads"
+                if room_name in 'Black_Egg_Temple':
+                    region_name = 'Black_Egg'
+            if room_name in ['Sly', 'Sly_Basement', 'Iselda', 'Bretta',
+                             'Bretta_Basement', 'Jiji', 'Jinn']:
+                map_name = "Dirtmouth"
+            if map_name == 'Egg':
+                room_name_no_area = room_name
+                region_name = 'Black_Egg'
+                map_name = 'Crossroads'
+            if map_name == 'POP':
+                region_name = map_name
+                room_name_no_area = room_name
+                map_name = 'Palace'
+            if room_name == "King's_Pass":
+                region_name = map_name
+                map_name = 'Dirtmouth'
+
+            # TODO: add region randomizer names
+            if region_name == '':
+                region_name = map_name
+
+            locDict[oldNames[i]] = {}
+
+            locDict[oldNames[i]]['name'] = room_name
+            locDict[oldNames[i]]['short_name'] = room_name_no_area
+            locDict[oldNames[i]]['map'] = map_name
+            locDict[oldNames[i]]['area'] = region_name
+
+        # Create JSON file
+        addText('Creating JSON file.\n')
+        with open(JSONPATH, "w") as outfile:
+            json.dump(locDict, outfile, indent=4)
+
+
 if __name__ == '__main__':
     '''Main program, defines main variables then begins loop'''
 
+    # Create dictionary
+    # TODO remove folder delete for release!
     # if os.path.isdir(INNERPATH):
     #     shutil.rmtree(INNERPATH)
     if not os.path.isdir(INNERPATH):
@@ -216,17 +341,7 @@ if __name__ == '__main__':
 
     # If config file exists, read it and check if any problems
     # If any problems or file is not there, create it
-    if os.path.isfile(CONFIGPATH):
-        with open(CONFIGPATH, 'r') as f:
-            configFile = f.read()
-        if len(configFile) == len(SETTINGS):
-            configString = 'Config.ini found.\n'
-        else:
-            configString = 'Config size error.\nConfig.ini created.\n'
-            configFile = '1' * len(SETTINGS)
-    else:
-        configFile = '1' * len(SETTINGS)
-        configString = 'Config.ini created.\n'
+    configFile, configString = readConfig()
 
     # Buttons and text
     toggle_text = tk.StringVar(value='Pause translation')
@@ -259,78 +374,29 @@ if __name__ == '__main__':
     # Print config status
     addText(configString)
 
-    # Read json, or create it
-    if not os.path.isfile(JSONPATH):
-        # Use XML to create JSON
-        if not os.path.isfile(XMLPATH):
-            # Need to download XML
-            addText('Downloading XML.\n')
-            try:
-                r = requests.get(XMLURL, allow_redirects=True)
-                open(XMLPATH, 'wb').write(r.content)
-            except Exception as e:
-                errorBoxQuit(
-                    "Could not find or download TranslatorDictionary.xml. " + str(e))
-
-        # Read XML and create dictionary from it
-        with open(XMLPATH) as f:
-            dictStr = f.read()
-        # Isolate old names
-        oldSplit = dictStr.split('<oldName>')
-        oldNames = []
-        for line in oldSplit:
-            if '</oldName>' in line:
-                oldNames.append(line.split('</oldName>')[0])
-        oldSplit = dictStr.split('<newName>')
-        # Isolate new names
-        newNames = []
-        for line in oldSplit:
-            if '</newName>' in line:
-                newNames.append(line.split('</newName>')[0])
-        assert len(oldNames) == len(newNames)  # just in case
-        # Create dictionary
-        locDict = {}
-        # Fill dictionary with extracted names
-        for i in range(len(oldNames)):
-            room_name = newNames[i]
-            room_name_no_area = '_'.join(newNames[i].split('_')[1:])
-            map_name = newNames[i].split('_')[0]
-            if map_name not in ["Dirtmouth", "Crossroads", "Greenpath", "Fungal",
-                                "Fog", "Cliffs", "Crystal", "Basin", "Abyss",
-                                "Grounds", "Edge", "City", "Hive", "Waterways",
-                                "Deepnest", "Gardens", "Palace", "POP", "Egg",
-                                "Grimm", "Dream", "Godhome"]:
-                room_name_no_area = room_name
-                map_name = room_name
-            if room_name == 'Dirtmouth':
-                room_name_no_area = room_name
-            if map_name.split('_')[0] == "Invincible":
-                map_name = "Godhome"
-            if room_name == "Black_Egg_Temple":
-                map_name = "Crossroads"
-
-            # TODO: add more regions, maybe also for area rando
-
-            locDict[oldNames[i]] = [room_name, room_name_no_area, map_name, '']
-
-        # Create JSON file
-        addText('Creating JSON file.\n')
-        with open(JSONPATH, "w") as outfile:
-            json.dump(locDict, outfile, indent=4)
+    # Create JSON dictionary
+    # This is where all the region logic is
+    # [IMPORTANT] This is very messy and I will maybe stop updating it...
+    if os.path.isfile(GOODJSONPATH):
+        json_to_read = GOODJSONPATH
+    else:
+        createJSON()
+        json_to_read = JSONPATH
 
     # Create dictionary from JSON file
     translationDict = {}
     try:
         addText('Reading JSON file.\n')
-        with open(JSONPATH) as json_file:
+        with open(json_to_read) as json_file:
             translationDict = json.load(json_file)
     except Exception as e:
         errorBoxQuit('Dictionary error. ' + str(e))
 
     allAreas = []
     for x in translationDict:
-        if translationDict[x][1] not in allAreas:
-            allAreas.append(translationDict[x][1])
+        if translationDict[x]['map'] not in allAreas:
+            allAreas.append(translationDict[x]['map'])
+    print(allAreas)
 
     # Start main function loop
     prevToWrite = ''

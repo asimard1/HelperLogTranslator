@@ -8,7 +8,7 @@ The GUI is built using tkinter, in a very inefficient way. Executable built usin
 # Use
 The program should be able to work from wherever it is placed. It will automatically find the folder where the Helper Log is located, and will place the translated log in the same location. Checkboxes let you select what parts of the log you want copied in the new file, to avoid unwanted spoilers for the run.
 
-No extra files should be needed. If the JSON file is not found, the program will create it from the XML file. If the XML file is not found, it will automatically try to download it.
+No extra files should be needed. If the JSON file is not found, the program will create it from the XML file. If the XML file is not found, it will automatically try to download it. The created file will probably have the wrong region names though, until this is hard-coded.
 
 The "Open File" button will use the app associated with .txt files by default.
 
