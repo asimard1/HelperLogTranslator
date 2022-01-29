@@ -879,7 +879,7 @@
         "name": "Crystal_Main_Entrance",
         "short_name": "Main_Entrance",
         "map": "Crystal",
-        "area": "Test_Region_Name"
+        "area": "Crystal"
     },
     "Mines_03": {
         "name": "Crystal_Spike_Grub",

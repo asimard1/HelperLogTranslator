@@ -1,14 +1,13 @@
 import tkinter as tk  # GUI
 from tkinter import scrolledtext as st  # Text widget
 from tkinter import messagebox as mb
-from black import out
 import requests  # Get translator from github
 import os  # Check if files exist, create directory and find helperlog
 import datetime  # Print update time
 import json  # To read dictionary
-import shutil  # To delete directory, only for testing purposes
-from pyvis.network import Network
-from tkinterweb import HtmlFrame as HF
+# import shutil  # To delete directory, only for testing purposes
+# from pyvis import network as nt
+# from tkinterweb import HtmlFrame as HF
 
 # For text widget
 TEXT_HEIGHT = 20
@@ -112,7 +111,9 @@ def addAsterix(outOfLogic, x):
 def updateLoop():
     '''Main loop, repeats until window is closed'''
     global prevToWrite
-    global prevCheckedBloc
+    global toWrite
+    # global prevCheckedBloc
+    # global checkedBloc
 
     if running:
         # Get what to write
@@ -228,10 +229,10 @@ def updateLoop():
 
         prevToWrite = toWrite
 
-        if checkedBloc != prevCheckedBloc:
-            drawGraph()
+        # if checkedBloc != prevCheckedBloc:
+        #     drawGraph()
 
-        prevCheckedBloc = checkedBloc
+        # prevCheckedBloc = checkedBloc
     root.after(100, updateLoop)  # Recursion loop
 
 
@@ -355,66 +356,66 @@ def createJSON():
             json.dump(locDict, outfile, indent=4)
 
 
-def drawGraph():
-    try:
-        with open(PATH, 'r') as f:
-            helperLog = f.read()
-    except Exception as e:
-        errorBoxQuit('HelperLog not found. ' + str(e))
+# def drawGraph():
+#     try:
+#         with open(PATH, 'r') as f:
+#             helperLog = f.read()
+#     except Exception as e:
+#         errorBoxQuit('HelperLog not found. ' + str(e))
 
-    blocs = helperLog.split('\n\n')
+#     blocs = helperLog.split('\n\n')
 
-    tab = []
-    for bloc in blocs:
-        if bloc.split('\n')[0] == 'CHECKED TRANSITIONS':
-            lines = bloc.split('\n')[1:]
-            for line in lines:
-                tab.append(line[2:].split('  -->  '))
+#     tab = []
+#     for bloc in blocs:
+#         if bloc.split('\n')[0] == 'CHECKED TRANSITIONS':
+#             lines = bloc.split('\n')[1:]
+#             for line in lines:
+#                 tab.append(line[2:].split('  -->  '))
 
-    net = Network(directed=True)
-    net.set_edge_smooth('dynamic')
-    for connection in tab:
-        loc1 = connection[0].replace('*', '').split('[')[0]
-        loc2 = connection[1].replace('*', '').split('[')[0]
-        if not globals()[varnames[MAP_OPTION_POS]].get():
-            # this is a map rando
-            map_connection = [translationDict[loc1]
-                              ['map'], translationDict[loc2]['map']]
-        else:
-            # this is an area rando
-            map_connection = [translationDict[loc1]
-                              ['area'], translationDict[loc2]['area']]
-        net.add_nodes(map_connection, title=map_connection)
-        net.add_edge(
-            *map_connection, title=connection[0].replace(loc1, translationDict[loc1]['short_name']))
+#     net = nt.Network(directed=True)
+#     net.set_edge_smooth('dynamic')
+#     for connection in tab:
+#         loc1 = connection[0].replace('*', '').split('[')[0]
+#         loc2 = connection[1].replace('*', '').split('[')[0]
+#         if not globals()[varnames[MAP_OPTION_POS]].get():
+#             # this is a map rando
+#             map_connection = [translationDict[loc1]
+#                               ['map'], translationDict[loc2]['map']]
+#         else:
+#             # this is an area rando
+#             map_connection = [translationDict[loc1]
+#                               ['area'], translationDict[loc2]['area']]
+#         net.add_nodes(map_connection, title=map_connection)
+#         net.add_edge(
+#             *map_connection, title=connection[0].replace(loc1, translationDict[loc1]['short_name']))
 
-    net.save_graph(GRAPHPATH)
+#     net.save_graph(GRAPHPATH)
 
-    addText('\nRefresh graph page.')
-
-
-def load_html():
-    with open(GRAPHPATH) as f:
-        htmlFile = f.read()
-
-    # graphWindow.load_html(htmlFile)
-    return htmlFile
+#     addText('\nRefresh graph page.')
 
 
-def openGraph():
-    addText('\nOpening graph.')
-    newWindow = tk.Toplevel(root)
-    newWindow.title('Graph window')
-    graph_url = 'localhost/' + os.path.abspath(GRAPHPATH).replace('\\', '/')
-    print(graph_url)
-    frame = HF(newWindow, messages_enabled=True)
-    # frame.load_file(graph_url, force=True)
-    frame.load_html(load_html())
-    frame.pack()
-    frame.on_done_loading(addText)
-    # graphWindow = webview.create_window('HK Graph')
-    # webview.start(load_html, [graphWindow])
-    # webbrowser.open(graph_url, new=1)
+# def load_html():
+#     with open(GRAPHPATH) as f:
+#         htmlFile = f.read()
+
+#     # graphWindow.load_html(htmlFile)
+#     return htmlFile
+
+
+# def openGraph():
+#     addText('\nOpening graph.')
+#     newWindow = tk.Toplevel(root)
+#     newWindow.title('Graph window')
+#     graph_url = 'localhost/' + os.path.abspath(GRAPHPATH).replace('\\', '/')
+#     print(graph_url)
+#     frame = HF(newWindow, messages_enabled=True)
+#     # frame.load_file(graph_url, force=True)
+#     frame.load_html(load_html())
+#     frame.pack()
+#     frame.on_done_loading(addText)
+#     # graphWindow = webview.create_window('HK Graph')
+#     # webview.start(load_html, [graphWindow])
+#     # webbrowser.open(graph_url, new=1)
 
 
 if __name__ == '__main__':
@@ -457,15 +458,15 @@ if __name__ == '__main__':
         root, textvariable=toggle_text, command=toggleTrans)
     openFile_button = tk.Button(root, text='Open file', command=openFile)
     exit_button = tk.Button(root, text='Exit', command=root.quit)
-    open_graph_button = tk.Button(
-        root, text='Open rando graph', command=openGraph)
+    # open_graph_button = tk.Button(
+    #     root, text='Open rando graph', command=openGraph)
     main_stext = st.ScrolledText(root, width=TEXT_WIDTH, height=TEXT_HEIGHT)
 
     # Place buttons and text
     toggle_button.pack(in_=top)
     openFile_button.pack(in_=mid, side=tk.LEFT)
     exit_button.pack(in_=mid, side=tk.LEFT)
-    open_graph_button.pack(in_=midBot)
+    # open_graph_button.pack(in_=midBot)
     main_stext.pack(in_=bot)
 
     # Create checkboxes, probably not a good idea to do so automatically
@@ -512,7 +513,7 @@ if __name__ == '__main__':
 
     # Start main function loop
     prevToWrite = ''
-    prevCheckedBloc = ''
+    # prevCheckedBloc = ''
     addText('Translation started.')
     root.after(10, updateLoop)
     root.mainloop()
