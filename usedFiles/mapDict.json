@@ -3,2358 +3,2751 @@
         "name": "King's_Pass",
         "short_name": "King's_Pass",
         "map": "Dirtmouth",
-        "area": "King's_Pass"
+        "area": "King's_Pass",
+        "type": null
     },
     "Town": {
         "name": "Dirtmouth",
         "short_name": "Dirtmouth",
         "map": "Dirtmouth",
-        "area": "Dirtmouth"
+        "area": "Dirtmouth",
+        "type": null
     },
     "Room_shop": {
         "name": "Sly",
         "short_name": "Sly",
         "map": "Dirtmouth",
-        "area": "Dirtmouth"
+        "area": "Dirtmouth",
+        "type": "shop"
     },
     "Room_Sly_Storeroom": {
         "name": "Sly_Basement",
         "short_name": "Sly_Basement",
         "map": "Dirtmouth",
-        "area": "Dirtmouth"
+        "area": "Dirtmouth",
+        "type": "shop"
     },
     "Room_Town_Stag_Station": {
         "name": "Dirtmouth_Stag",
         "short_name": "Stag",
         "map": "Dirtmouth",
-        "area": "Dirtmouth"
+        "area": "Dirtmouth",
+        "type": "stag"
     },
     "Room_mapper": {
         "name": "Iselda",
         "short_name": "Iselda",
         "map": "Dirtmouth",
-        "area": "Dirtmouth"
+        "area": "Dirtmouth",
+        "type": "shop"
     },
     "Room_Bretta": {
         "name": "Bretta",
         "short_name": "Bretta",
         "map": "Dirtmouth",
-        "area": "Dirtmouth"
+        "area": "Dirtmouth",
+        "type": null
     },
     "Room_Bretta_Basement": {
         "name": "Bretta_Basement",
         "short_name": "Bretta_Basement",
         "map": "Dirtmouth",
-        "area": "Dirtmouth"
+        "area": "Dirtmouth",
+        "type": null
     },
     "Room_Ouiji": {
         "name": "Jiji",
         "short_name": "Jiji",
         "map": "Dirtmouth",
-        "area": "Dirtmouth"
+        "area": "Dirtmouth",
+        "type": "shop"
     },
     "Room_Jinn": {
         "name": "Jinn",
         "short_name": "Jinn",
         "map": "Dirtmouth",
-        "area": "Dirtmouth"
+        "area": "Dirtmouth",
+        "type": "shop"
     },
     "Room_Tram_RG": {
         "name": "Upper_Tram",
         "short_name": "Upper_Tram",
         "map": "Upper_Tram",
-        "area": "Upper_Tram"
+        "area": "Upper_Tram",
+        "type": "bench"
     },
     "Room_Tram": {
         "name": "Lower_Tram",
         "short_name": "Lower_Tram",
         "map": "Lower_Tram",
-        "area": "Lower_Tram"
+        "area": "Lower_Tram",
+        "type": "bench"
     },
     "Room_Charm_Shop": {
         "name": "Salubra",
         "short_name": "Salubra",
         "map": "Crossroads",
-        "area": "Crossroads"
+        "area": "Crossroads",
+        "type": "shop"
     },
     "Room_temple": {
         "name": "Black_Egg_Temple",
         "short_name": "Black_Egg_Temple",
         "map": "Crossroads",
-        "area": "Black_Egg"
+        "area": "Black_Egg",
+        "type": null
     },
     "Crossroads_01": {
         "name": "Crossroads_Well",
         "short_name": "Well",
         "map": "Crossroads",
-        "area": "Crossroads"
+        "area": "Crossroads",
+        "type": null
     },
     "Crossroads_02": {
         "name": "Crossroads_Outside_Temple",
         "short_name": "Outside_Temple",
         "map": "Crossroads",
-        "area": "Crossroads"
+        "area": "Crossroads",
+        "type": null
     },
     "Crossroads_03": {
         "name": "Crossroads_Outside_Stag",
         "short_name": "Outside_Stag",
         "map": "Crossroads",
-        "area": "Crossroads"
+        "area": "Crossroads",
+        "type": null
     },
     "Crossroads_04": {
         "name": "Crossroads_Gruz_Mother",
         "short_name": "Gruz_Mother",
         "map": "Crossroads",
-        "area": "Crossroads"
+        "area": "Crossroads",
+        "type": null
     },
     "Crossroads_05": {
         "name": "Crossroads_Central_Grub",
         "short_name": "Central_Grub",
         "map": "Crossroads",
-        "area": "Crossroads"
+        "area": "Crossroads",
+        "type": null
     },
     "Crossroads_06": {
         "name": "Crossroads_Outside_Mound",
         "short_name": "Outside_Mound",
         "map": "Crossroads",
-        "area": "Crossroads"
+        "area": "Crossroads",
+        "type": null
     },
     "Crossroads_07": {
         "name": "Crossroads_Gruzzer",
         "short_name": "Gruzzer",
         "map": "Crossroads",
-        "area": "Crossroads"
+        "area": "Crossroads",
+        "type": null
     },
     "Crossroads_08": {
         "name": "Crossroads_Aspid_Arena",
         "short_name": "Aspid_Arena",
         "map": "Crossroads",
-        "area": "Crossroads"
+        "area": "Crossroads",
+        "type": null
     },
     "Crossroads_09": {
         "name": "Crossroads_Mawlek_Boss",
         "short_name": "Mawlek_Boss",
         "map": "Crossroads",
-        "area": "Crossroads"
+        "area": "Crossroads",
+        "type": null
     },
     "Crossroads_10": {
         "name": "Crossroads_False_Knight_Arena",
         "short_name": "False_Knight_Arena",
         "map": "Crossroads",
-        "area": "Crossroads"
+        "area": "Crossroads",
+        "type": null
     },
     "Crossroads_11_alt": {
         "name": "Crossroads_Greenpath_Entrance",
         "short_name": "Greenpath_Entrance",
         "map": "Crossroads",
-        "area": "Crossroads"
+        "area": "Crossroads",
+        "type": null
     },
     "Crossroads_12": {
         "name": "Crossroads_Corridor_to_Acid_Grub",
         "short_name": "Corridor_to_Acid_Grub",
         "map": "Crossroads",
-        "area": "Crossroads"
+        "area": "Crossroads",
+        "type": null
     },
     "Crossroads_13": {
         "name": "Crossroads_Goam_Mask_Shard",
         "short_name": "Goam_Mask_Shard",
         "map": "Crossroads",
-        "area": "Crossroads"
+        "area": "Crossroads",
+        "type": null
     },
     "Crossroads_14": {
         "name": "Crossroads_Outside_Myla",
         "short_name": "Outside_Myla",
         "map": "Crossroads",
-        "area": "Crossroads"
+        "area": "Crossroads",
+        "type": null
     },
     "Crossroads_15": {
         "name": "Crossroads_Corridor_to_Tram",
         "short_name": "Corridor_to_Tram",
         "map": "Crossroads",
-        "area": "Crossroads"
+        "area": "Crossroads",
+        "type": null
     },
     "Crossroads_16": {
         "name": "Crossroads_Above_Lever",
         "short_name": "Above_Lever",
         "map": "Crossroads",
-        "area": "Crossroads"
+        "area": "Crossroads",
+        "type": null
     },
     "Crossroads_18": {
         "name": "Crossroads_Fungal_Entrance",
         "short_name": "Fungal_Entrance",
         "map": "Crossroads",
-        "area": "Crossroads"
+        "area": "Crossroads",
+        "type": null
     },
     "Crossroads_19": {
         "name": "Crossroads_Before_Gruz_Mother",
         "short_name": "Before_Gruz_Mother",
         "map": "Crossroads",
-        "area": "Crossroads"
+        "area": "Crossroads",
+        "type": null
     },
     "Crossroads_21": {
         "name": "Crossroads_Outside_False_Knight",
         "short_name": "Outside_False_Knight",
         "map": "Crossroads",
-        "area": "Crossroads"
+        "area": "Crossroads",
+        "type": null
     },
     "Crossroads_22": {
         "name": "Crossroads_Glowing_Womb_Arena",
         "short_name": "Glowing_Womb_Arena",
         "map": "Crossroads",
-        "area": "Crossroads"
+        "area": "Crossroads",
+        "type": null
     },
     "Crossroads_25": {
         "name": "Crossroads_Mawlek_Entrance",
         "short_name": "Mawlek_Entrance",
         "map": "Crossroads",
-        "area": "Crossroads"
+        "area": "Crossroads",
+        "type": null
     },
     "Crossroads_27": {
         "name": "Crossroads_Outside_Tram",
         "short_name": "Outside_Tram",
         "map": "Crossroads",
-        "area": "Crossroads"
+        "area": "Crossroads",
+        "type": null
     },
     "Crossroads_30": {
         "name": "Crossroads_Hot_Spring",
         "short_name": "Hot_Spring",
         "map": "Crossroads",
-        "area": "Crossroads"
+        "area": "Crossroads",
+        "type": "bench"
     },
     "Crossroads_31": {
         "name": "Crossroads_Spike_Grub",
         "short_name": "Spike_Grub",
         "map": "Crossroads",
-        "area": "Crossroads"
+        "area": "Crossroads",
+        "type": null
     },
     "Crossroads_33": {
         "name": "Crossroads_Cornifer",
         "short_name": "Cornifer",
         "map": "Crossroads",
-        "area": "Crossroads"
+        "area": "Crossroads",
+        "type": null
     },
     "Crossroads_35": {
         "name": "Crossroads_Acid_Grub",
         "short_name": "Acid_Grub",
         "map": "Crossroads",
-        "area": "Crossroads"
+        "area": "Crossroads",
+        "type": null
     },
     "Crossroads_36": {
         "name": "Crossroads_Mawlek_Middle",
         "short_name": "Mawlek_Middle",
         "map": "Crossroads",
-        "area": "Crossroads"
+        "area": "Crossroads",
+        "type": null
     },
     "Crossroads_37": {
         "name": "Crossroads_Vessel_Fragment",
         "short_name": "Vessel_Fragment",
         "map": "Crossroads",
-        "area": "Crossroads"
+        "area": "Crossroads",
+        "type": null
     },
     "Crossroads_38": {
         "name": "Crossroads_Grubfather",
         "short_name": "Grubfather",
         "map": "Crossroads",
-        "area": "Crossroads"
+        "area": "Crossroads",
+        "type": null
     },
     "Crossroads_39": {
         "name": "Crossroads_Corridor_Right_of_Temple",
         "short_name": "Corridor_Right_of_Temple",
         "map": "Crossroads",
-        "area": "Crossroads"
+        "area": "Crossroads",
+        "type": null
     },
     "Crossroads_40": {
         "name": "Crossroads_Corridor_Right_of_Central_Grub",
         "short_name": "Corridor_Right_of_Central_Grub",
         "map": "Crossroads",
-        "area": "Crossroads"
+        "area": "Crossroads",
+        "type": null
     },
     "Crossroads_42": {
         "name": "Crossroads_Right_Of_Mask_Shard",
         "short_name": "Right_Of_Mask_Shard",
         "map": "Crossroads",
-        "area": "Crossroads"
+        "area": "Crossroads",
+        "type": null
     },
     "Crossroads_43": {
         "name": "Crossroads_Corridor_to_Elevator",
         "short_name": "Corridor_to_Elevator",
         "map": "Crossroads",
-        "area": "Crossroads"
+        "area": "Crossroads",
+        "type": null
     },
     "Crossroads_45": {
         "name": "Crossroads_Myla",
         "short_name": "Myla",
         "map": "Crossroads",
-        "area": "Crossroads"
+        "area": "Crossroads",
+        "type": null
     },
     "Crossroads_46": {
         "name": "Crossroads_Tram",
         "short_name": "Tram",
         "map": "Crossroads",
-        "area": "Crossroads"
+        "area": "Crossroads",
+        "type": null
     },
     "Crossroads_47": {
         "name": "Crossroads_Stag",
         "short_name": "Stag",
         "map": "Crossroads",
-        "area": "Crossroads"
+        "area": "Crossroads",
+        "type": "stag"
     },
     "Crossroads_48": {
         "name": "Crossroads_Guarded_Grub",
         "short_name": "Guarded_Grub",
         "map": "Crossroads",
-        "area": "Crossroads"
+        "area": "Crossroads",
+        "type": null
     },
     "Crossroads_49": {
         "name": "Crossroads_Elevator",
         "short_name": "Elevator",
         "map": "Crossroads",
-        "area": "Crossroads"
+        "area": "Crossroads",
+        "type": null
     },
     "Crossroads_52": {
         "name": "Crossroads_Goam_Journal",
         "short_name": "Goam_Journal",
         "map": "Crossroads",
-        "area": "Crossroads"
+        "area": "Crossroads",
+        "type": null
     },
     "Crossroads_ShamanTemple": {
         "name": "Crossroads_Ancestral_Mound",
         "short_name": "Ancestral_Mound",
         "map": "Crossroads",
-        "area": "Crossroads"
+        "area": "Crossroads",
+        "type": "bench"
     },
     "Room_Mender_House": {
         "name": "Crossroads_Menderbug",
         "short_name": "Menderbug",
         "map": "Crossroads",
-        "area": "Crossroads"
+        "area": "Crossroads",
+        "type": null
     },
     "Room_ruinhouse": {
         "name": "Crossroads_Rescue_Sly",
         "short_name": "Rescue_Sly",
         "map": "Crossroads",
-        "area": "Crossroads"
+        "area": "Crossroads",
+        "type": null
     },
     "Fungus1_01": {
         "name": "Greenpath_Entrance",
         "short_name": "Entrance",
         "map": "Greenpath",
-        "area": "Greenpath"
+        "area": "Greenpath",
+        "type": null
     },
     "Fungus1_01b": {
         "name": "Greenpath_Waterfall_Bench",
         "short_name": "Waterfall_Bench",
         "map": "Greenpath",
-        "area": "Greenpath"
+        "area": "Greenpath",
+        "type": "bench"
     },
     "Fungus1_02": {
         "name": "Greenpath_First_Hornet_Sighting",
         "short_name": "First_Hornet_Sighting",
         "map": "Greenpath",
-        "area": "Greenpath"
+        "area": "Greenpath",
+        "type": null
     },
     "Fungus1_03": {
         "name": "Greenpath_Storerooms",
         "short_name": "Storerooms",
         "map": "Greenpath",
-        "area": "Greenpath"
+        "area": "Greenpath",
+        "type": null
     },
     "Fungus1_04": {
         "name": "Greenpath_Hornet",
         "short_name": "Hornet",
         "map": "Greenpath",
-        "area": "Greenpath"
+        "area": "Greenpath",
+        "type": null
     },
     "Fungus1_05": {
         "name": "Greenpath_Outside_Thorns",
         "short_name": "Outside_Thorns",
         "map": "Greenpath",
-        "area": "Greenpath"
+        "area": "Greenpath",
+        "type": null
     },
     "Fungus1_06": {
         "name": "Greenpath_Cornifer",
         "short_name": "Cornifer",
         "map": "Greenpath",
-        "area": "Greenpath"
+        "area": "Greenpath",
+        "type": null
     },
     "Fungus1_07": {
         "name": "Greenpath_Outside_Hunter",
         "short_name": "Outside_Hunter",
         "map": "Greenpath",
-        "area": "Greenpath"
+        "area": "Greenpath",
+        "type": null
     },
     "Fungus1_08": {
         "name": "Greenpath_Hunter",
         "short_name": "Hunter",
         "map": "Greenpath",
-        "area": "Greenpath"
+        "area": "Greenpath",
+        "type": null
     },
     "Fungus1_09": {
         "name": "Greenpath_Sheo_Gauntlet",
         "short_name": "Sheo_Gauntlet",
         "map": "Greenpath",
-        "area": "Greenpath"
+        "area": "Greenpath",
+        "type": null
     },
     "Fungus1_10": {
         "name": "Greenpath_Acid_Bridge",
         "short_name": "Acid_Bridge",
         "map": "Greenpath",
-        "area": "Greenpath"
+        "area": "Greenpath",
+        "type": null
     },
     "Fungus1_11": {
         "name": "Greenpath_Above_Fog_Canyon",
         "short_name": "Above_Fog_Canyon",
         "map": "Greenpath",
-        "area": "Greenpath"
+        "area": "Greenpath",
+        "type": null
     },
     "Fungus1_12": {
         "name": "Greenpath_MMC_Corridor",
         "short_name": "MMC_Corridor",
         "map": "Greenpath",
-        "area": "Greenpath"
+        "area": "Greenpath",
+        "type": null
     },
     "Fungus1_13": {
         "name": "Greenpath_Whispering_Root",
         "short_name": "Whispering_Root",
         "map": "Greenpath",
-        "area": "Greenpath"
+        "area": "Greenpath",
+        "type": null
     },
     "Fungus1_14": {
         "name": "Greenpath_Thorns_of_Agony",
         "short_name": "Thorns_of_Agony",
         "map": "Greenpath",
-        "area": "Greenpath"
+        "area": "Greenpath",
+        "type": null
     },
     "Fungus1_15": {
         "name": "Greenpath_Outside_Sheo",
         "short_name": "Outside_Sheo",
         "map": "Greenpath",
-        "area": "Greenpath"
+        "area": "Greenpath",
+        "type": "bench"
     },
     "Fungus1_16_alt": {
         "name": "Greenpath_Stag",
         "short_name": "Stag",
         "map": "Greenpath",
-        "area": "Greenpath"
+        "area": "Greenpath",
+        "type": "stag"
     },
     "Fungus1_17": {
         "name": "Greenpath_Charger_Corridor",
         "short_name": "Charger_Corridor",
         "map": "Greenpath",
-        "area": "Greenpath"
+        "area": "Greenpath",
+        "type": null
     },
     "Fungus1_19": {
         "name": "Greenpath_Above_Sanctuary_Bench",
         "short_name": "Above_Sanctuary_Bench",
         "map": "Greenpath",
-        "area": "Greenpath"
+        "area": "Greenpath",
+        "type": "bench"
     },
     "Fungus1_20_v02": {
         "name": "Greenpath_Vengefly_King",
         "short_name": "Vengefly_King",
         "map": "Greenpath",
-        "area": "Greenpath"
+        "area": "Greenpath",
+        "type": null
     },
     "Fungus1_21": {
         "name": "Greenpath_Outside_Hornet",
         "short_name": "Outside_Hornet",
         "map": "Greenpath",
-        "area": "Greenpath"
+        "area": "Greenpath",
+        "type": null
     },
     "Fungus1_22": {
         "name": "Greenpath_Outside_Stag",
         "short_name": "Outside_Stag",
         "map": "Greenpath",
-        "area": "Greenpath"
+        "area": "Greenpath",
+        "type": null
     },
     "Fungus1_25": {
         "name": "Greenpath_Corridor_to_Unn",
         "short_name": "Corridor_to_Unn",
         "map": "Greenpath",
-        "area": "Greenpath"
+        "area": "Greenpath",
+        "type": null
     },
     "Fungus1_26": {
         "name": "Greenpath_Lake_Of_Unn",
         "short_name": "Lake_Of_Unn",
         "map": "Greenpath",
-        "area": "Greenpath"
+        "area": "Greenpath",
+        "type": null
     },
     "Fungus1_29": {
         "name": "Greenpath_Massive_Moss_Charger",
         "short_name": "Massive_Moss_Charger",
         "map": "Greenpath",
-        "area": "Greenpath"
+        "area": "Greenpath",
+        "type": null
     },
     "Fungus1_30": {
         "name": "Greenpath_Below_Toll_Bench",
         "short_name": "Below_Toll_Bench",
         "map": "Greenpath",
-        "area": "Greenpath"
+        "area": "Greenpath",
+        "type": null
     },
     "Fungus1_31": {
         "name": "Greenpath_Toll",
         "short_name": "Toll",
         "map": "Greenpath",
-        "area": "Greenpath"
+        "area": "Greenpath",
+        "type": "bench"
     },
     "Fungus1_32": {
         "name": "Greenpath_Moss_Knight_Arena",
         "short_name": "Moss_Knight_Arena",
         "map": "Greenpath",
-        "area": "Greenpath"
+        "area": "Greenpath",
+        "type": null
     },
     "Fungus1_34": {
         "name": "Greenpath_Stone_Sanctuary_Entrance",
         "short_name": "Stone_Sanctuary_Entrance",
         "map": "Greenpath",
-        "area": "Greenpath"
+        "area": "Greenpath",
+        "type": null
     },
     "Fungus1_35": {
         "name": "Greenpath_Stone_Sanctuary",
         "short_name": "Stone_Sanctuary",
         "map": "Greenpath",
-        "area": "Greenpath"
+        "area": "Greenpath",
+        "type": null
     },
     "Fungus1_36": {
         "name": "Greenpath_Stone_Sanctuary_Mask_Shard",
         "short_name": "Stone_Sanctuary_Mask_Shard",
         "map": "Greenpath",
-        "area": "Greenpath"
+        "area": "Greenpath",
+        "type": null
     },
     "Fungus1_37": {
         "name": "Greenpath_Sanctuary_Bench",
         "short_name": "Sanctuary_Bench",
         "map": "Greenpath",
-        "area": "Greenpath"
+        "area": "Greenpath",
+        "type": "bench"
     },
     "Fungus1_Slug": {
         "name": "Greenpath_Unn",
         "short_name": "Unn",
         "map": "Greenpath",
-        "area": "Greenpath"
+        "area": "Greenpath",
+        "type": null
     },
     "Room_nailmaster_02": {
         "name": "Greenpath_Sheo",
         "short_name": "Sheo",
         "map": "Greenpath",
-        "area": "Greenpath"
+        "area": "Greenpath",
+        "type": null
     },
     "Room_Slug_Shrine": {
         "name": "Greenpath_Unn_Bench",
         "short_name": "Unn_Bench",
         "map": "Greenpath",
-        "area": "Greenpath"
+        "area": "Greenpath",
+        "type": "bench"
     },
     "Deepnest_01": {
         "name": "Fungal_Deepnest_Fall",
         "short_name": "Deepnest_Fall",
         "map": "Fungal",
-        "area": "Fungal"
+        "area": "Fungal",
+        "type": null
     },
     "Fungus2_01": {
         "name": "Fungal_Queen's_Station",
         "short_name": "Queen's_Station",
         "map": "Fungal",
-        "area": "Fungal"
+        "area": "Fungal",
+        "type": null
     },
     "Fungus2_02": {
         "name": "Fungal_Queen's_Stag",
         "short_name": "Queen's_Stag",
         "map": "Fungal",
-        "area": "Fungal"
+        "area": "Fungal",
+        "type": "stag"
     },
     "Fungus2_03": {
         "name": "Fungal_Outside_Queen's",
         "short_name": "Outside_Queen's",
         "map": "Fungal",
-        "area": "Fungal"
+        "area": "Fungal",
+        "type": null
     },
     "Fungus2_04": {
         "name": "Fungal_Below_Ogres",
         "short_name": "Below_Ogres",
         "map": "Fungal",
-        "area": "Fungal"
+        "area": "Fungal",
+        "type": null
     },
     "Fungus2_05": {
         "name": "Fungal_Shrumal_Ogres",
         "short_name": "Shrumal_Ogres",
         "map": "Fungal",
-        "area": "Fungal"
+        "area": "Fungal",
+        "type": null
     },
     "Fungus2_06": {
         "name": "Fungal_Outside_Leg_Eater",
         "short_name": "Outside_Leg_Eater",
         "map": "Fungal",
-        "area": "Fungal"
+        "area": "Fungal",
+        "type": null
     },
     "Fungus2_07": {
         "name": "Fungal_Shrumal_Warrior_Acid_Bridge",
         "short_name": "Shrumal_Warrior_Acid_Bridge",
         "map": "Fungal",
-        "area": "Fungal"
+        "area": "Fungal",
+        "type": null
     },
     "Fungus2_08": {
         "name": "Fungal_Outside_Elder_Hu",
         "short_name": "Outside_Elder_Hu",
         "map": "Fungal",
-        "area": "Fungal"
+        "area": "Fungal",
+        "type": null
     },
     "Fungus2_09": {
         "name": "Fungal_Cloth_Corridor",
         "short_name": "Cloth_Corridor",
         "map": "Fungal",
-        "area": "Fungal"
+        "area": "Fungal",
+        "type": null
     },
     "Fungus2_10": {
         "name": "Fungal_Left_Of_Pilgrim's_Way",
         "short_name": "Left_Of_Pilgrim's_Way",
         "map": "Fungal",
-        "area": "Fungal"
+        "area": "Fungal",
+        "type": null
     },
     "Fungus2_11": {
         "name": "Fungal_Epogo",
         "short_name": "Epogo",
         "map": "Fungal",
-        "area": "Fungal"
+        "area": "Fungal",
+        "type": null
     },
     "Fungus2_12": {
         "name": "Fungal_Mantis_Corridor",
         "short_name": "Mantis_Corridor",
         "map": "Fungal",
-        "area": "Fungal"
+        "area": "Fungal",
+        "type": null
     },
     "Fungus2_13": {
         "name": "Fungal_Bretta_Bench",
         "short_name": "Bretta_Bench",
         "map": "Fungal",
-        "area": "Fungal"
+        "area": "Fungal",
+        "type": "bench"
     },
     "Fungus2_14": {
         "name": "Fungal_Mantis_Village",
         "short_name": "Mantis_Village",
         "map": "Fungal",
-        "area": "Fungal"
+        "area": "Fungal",
+        "type": null
     },
     "Fungus2_15": {
         "name": "Fungal_Mantis_Lords",
         "short_name": "Mantis_Lords",
         "map": "Fungal",
-        "area": "Fungal"
+        "area": "Fungal",
+        "type": null
     },
     "Fungus2_17": {
         "name": "Fungal_Above_Mantis_Village",
         "short_name": "Above_Mantis_Village",
         "map": "Fungal",
-        "area": "Fungal"
+        "area": "Fungal",
+        "type": null
     },
     "Fungus2_18": {
         "name": "Fungal_Cornifer",
         "short_name": "Cornifer",
         "map": "Fungal",
-        "area": "Fungal"
+        "area": "Fungal",
+        "type": null
     },
     "Fungus2_19": {
         "name": "Fungal_Right_Of_Spore_Shroom",
         "short_name": "Right_Of_Spore_Shroom",
         "map": "Fungal",
-        "area": "Fungal"
+        "area": "Fungal",
+        "type": null
     },
     "Fungus2_20": {
         "name": "Fungal_Spore_Shroom",
         "short_name": "Spore_Shroom",
         "map": "Fungal",
-        "area": "Fungal"
+        "area": "Fungal",
+        "type": null
     },
     "Fungus2_21": {
         "name": "Fungal_Pilgrim's_Way",
         "short_name": "Pilgrim's_Way",
         "map": "Fungal",
-        "area": "Fungal"
+        "area": "Fungal",
+        "type": null
     },
     "Fungus2_23": {
         "name": "Fungal_Dashmaster",
         "short_name": "Dashmaster",
         "map": "Fungal",
-        "area": "Fungal"
+        "area": "Fungal",
+        "type": null
     },
     "Fungus2_26": {
         "name": "Fungal_Leg_Eater",
         "short_name": "Leg_Eater",
         "map": "Fungal",
-        "area": "Fungal"
+        "area": "Fungal",
+        "type": "shop"
     },
     "Fungus2_28": {
         "name": "Fungal_Shrumal_Warrior_Loop",
         "short_name": "Shrumal_Warrior_Loop",
         "map": "Fungal",
-        "area": "Fungal"
+        "area": "Fungal",
+        "type": null
     },
     "Fungus2_29": {
         "name": "Fungal_Core_Upper",
         "short_name": "Core_Upper",
         "map": "Fungal",
-        "area": "Fungal"
+        "area": "Fungal",
+        "type": null
     },
     "Fungus2_30": {
         "name": "Fungal_Core_Lower",
         "short_name": "Core_Lower",
         "map": "Fungal",
-        "area": "Fungal"
+        "area": "Fungal",
+        "type": null
     },
     "Fungus2_31": {
         "name": "Fungal_Mantis_Rewards",
         "short_name": "Mantis_Rewards",
         "map": "Fungal",
-        "area": "Fungal"
+        "area": "Fungal",
+        "type": "bench"
     },
     "Fungus2_32": {
         "name": "Fungal_Elder_Hu",
         "short_name": "Elder_Hu",
         "map": "Fungal",
-        "area": "Fungal"
+        "area": "Fungal",
+        "type": null
     },
     "Fungus2_33": {
         "name": "Fungal_Leg_Eater_Root",
         "short_name": "Leg_Eater_Root",
         "map": "Fungal",
-        "area": "Fungal"
+        "area": "Fungal",
+        "type": null
     },
     "Fungus2_34": {
         "name": "Fungal_Willoh",
         "short_name": "Willoh",
         "map": "Fungal",
-        "area": "Fungal"
+        "area": "Fungal",
+        "type": null
     },
     "Fungus3_01": {
         "name": "Fog_Upper_West_Tall",
         "short_name": "Upper_West_Tall",
         "map": "Fog",
-        "area": "Fog"
+        "area": "Fog",
+        "type": null
     },
     "Fungus3_02": {
         "name": "Fog_Lower_West_Tall",
         "short_name": "Lower_West_Tall",
         "map": "Fog",
-        "area": "Fog"
+        "area": "Fog",
+        "type": null
     },
     "Fungus3_03": {
         "name": "Fog_Queen's_Gardens_Acid_Entrance",
         "short_name": "Queen's_Gardens_Acid_Entrance",
         "map": "Fog",
-        "area": "Fog"
+        "area": "Fog",
+        "type": null
     },
     "Fungus3_24": {
         "name": "Fog_Corridor_to_Overgrown_Mound",
         "short_name": "Corridor_to_Overgrown_Mound",
         "map": "Fog",
-        "area": "Fog"
+        "area": "Fog",
+        "type": null
     },
     "Fungus3_25": {
         "name": "Fog_Cornifer",
         "short_name": "Cornifer",
         "map": "Fog",
-        "area": "Fog"
+        "area": "Fog",
+        "type": null
     },
     "Fungus3_25b": {
         "name": "Fog_Corridor_to_Cornifer",
         "short_name": "Corridor_to_Cornifer",
         "map": "Fog",
-        "area": "Fog"
+        "area": "Fog",
+        "type": null
     },
     "Fungus3_26": {
         "name": "Fog_East_Tall",
         "short_name": "East_Tall",
         "map": "Fog",
-        "area": "Fog"
+        "area": "Fog",
+        "type": null
     },
     "Fungus3_27": {
         "name": "Fog_Corridor_to_Archives",
         "short_name": "Corridor_to_Archives",
         "map": "Fog",
-        "area": "Fog"
+        "area": "Fog",
+        "type": null
     },
     "Fungus3_28": {
         "name": "Fog_Charm_Notch",
         "short_name": "Charm_Notch",
         "map": "Fog",
-        "area": "Fog"
+        "area": "Fog",
+        "type": null
     },
     "Fungus3_30": {
         "name": "Fog_Lifeblood",
         "short_name": "Lifeblood",
         "map": "Fog",
-        "area": "Fog"
+        "area": "Fog",
+        "type": null
     },
     "Fungus3_35": {
         "name": "Fog_Millibelle",
         "short_name": "Millibelle",
         "map": "Fog",
-        "area": "Fog"
+        "area": "Fog",
+        "type": null
     },
     "Fungus3_44": {
         "name": "Fog_Overgrown_Mound_Entrance",
         "short_name": "Overgrown_Mound_Entrance",
         "map": "Fog",
-        "area": "Fog"
+        "area": "Fog",
+        "type": null
     },
     "Fungus3_47": {
         "name": "Fog_Archives_Entrance",
         "short_name": "Archives_Entrance",
         "map": "Fog",
-        "area": "Fog"
+        "area": "Fog",
+        "type": null
     },
     "Fungus3_archive": {
         "name": "Fog_Archives_Bench",
         "short_name": "Archives_Bench",
         "map": "Fog",
-        "area": "Fog"
+        "area": "Fog",
+        "type": "bench"
     },
     "Fungus3_archive_02": {
         "name": "Fog_Uumuu_Arena",
         "short_name": "Uumuu_Arena",
         "map": "Fog",
-        "area": "Fog"
+        "area": "Fog",
+        "type": null
     },
     "Room_Fungus_Shaman": {
         "name": "Fog_Overgrown_Mound",
         "short_name": "Overgrown_Mound",
         "map": "Fog",
-        "area": "Fog"
+        "area": "Fog",
+        "type": null
     },
     "Cliffs_01": {
         "name": "Cliffs_Main",
         "short_name": "Main",
         "map": "Cliffs",
-        "area": "Cliffs"
+        "area": "Cliffs",
+        "type": null
     },
     "Cliffs_02": {
         "name": "Cliffs_Gorb",
         "short_name": "Gorb",
         "map": "Cliffs",
-        "area": "Cliffs"
+        "area": "Cliffs",
+        "type": null
     },
     "Cliffs_03": {
         "name": "Cliffs_Stag_Nest",
         "short_name": "Stag_Nest",
         "map": "Cliffs",
-        "area": "Cliffs"
+        "area": "Cliffs",
+        "type": "stag"
     },
     "Cliffs_04": {
         "name": "Cliffs_Joni's_Dark",
         "short_name": "Joni's_Dark",
         "map": "Cliffs",
-        "area": "Cliffs"
+        "area": "Cliffs",
+        "type": null
     },
     "Cliffs_05": {
         "name": "Cliffs_Joni's_Pickup",
         "short_name": "Joni's_Pickup",
         "map": "Cliffs",
-        "area": "Cliffs"
+        "area": "Cliffs",
+        "type": null
     },
     "Cliffs_06": {
         "name": "Cliffs_Grimm_Lantern",
         "short_name": "Grimm_Lantern",
         "map": "Cliffs",
-        "area": "Cliffs"
+        "area": "Cliffs",
+        "type": null
     },
     "Fungus1_28": {
         "name": "Cliffs_Baldur's_Shell",
         "short_name": "Baldur's_Shell",
         "map": "Cliffs",
-        "area": "Cliffs"
+        "area": "Cliffs",
+        "type": null
     },
     "Room_nailmaster": {
         "name": "Cliffs_Mato",
         "short_name": "Mato",
         "map": "Cliffs",
-        "area": "Cliffs"
+        "area": "Cliffs",
+        "type": "bench"
     },
     "Mines_01": {
         "name": "Crystal_Dive_Entrance",
         "short_name": "Dive_Entrance",
         "map": "Crystal",
-        "area": "Crystal"
+        "area": "Crystal",
+        "type": null
     },
     "Mines_02": {
         "name": "Crystal_Main_Entrance",
         "short_name": "Main_Entrance",
         "map": "Crystal",
-        "area": "Crystal"
+        "area": "Crystal",
+        "type": null
     },
     "Mines_03": {
         "name": "Crystal_Spike_Grub",
         "short_name": "Spike_Grub",
         "map": "Crystal",
-        "area": "Crystal"
+        "area": "Crystal",
+        "type": null
     },
     "Mines_04": {
         "name": "Crystal_Entrance_Conveyors",
         "short_name": "Entrance_Conveyors",
         "map": "Crystal",
-        "area": "Crystal"
+        "area": "Crystal",
+        "type": null
     },
     "Mines_05": {
         "name": "Crystal_Above_Spike_Grub",
         "short_name": "Above_Spike_Grub",
         "map": "Crystal",
-        "area": "Crystal"
+        "area": "Crystal",
+        "type": null
     },
     "Mines_06": {
         "name": "Crystal_Deep_Focus_Gauntlet",
         "short_name": "Deep_Focus_Gauntlet",
         "map": "Crystal",
-        "area": "Crystal"
+        "area": "Crystal",
+        "type": null
     },
     "Mines_07": {
         "name": "Crystal_Dark_Room",
         "short_name": "Dark_Room",
         "map": "Crystal",
-        "area": "Crystal"
+        "area": "Crystal",
+        "type": null
     },
     "Mines_10": {
         "name": "Crystal_Elevator_Entrance",
         "short_name": "Elevator_Entrance",
         "map": "Crystal",
-        "area": "Crystal"
+        "area": "Crystal",
+        "type": null
     },
     "Mines_11": {
         "name": "Crystal_Left_Of_Guardian",
         "short_name": "Left_Of_Guardian",
         "map": "Crystal",
-        "area": "Crystal"
+        "area": "Crystal",
+        "type": null
     },
     "Mines_13": {
         "name": "Crystal_Top_Corridor",
         "short_name": "Top_Corridor",
         "map": "Crystal",
-        "area": "Crystal"
+        "area": "Crystal",
+        "type": null
     },
     "Mines_16": {
         "name": "Crystal_Mimic",
         "short_name": "Mimic",
         "map": "Crystal",
-        "area": "Crystal"
+        "area": "Crystal",
+        "type": null
     },
     "Mines_17": {
         "name": "Crystal_Corridor_to_Spike_Grub",
         "short_name": "Corridor_to_Spike_Grub",
         "map": "Crystal",
-        "area": "Crystal"
+        "area": "Crystal",
+        "type": null
     },
     "Mines_18": {
         "name": "Crystal_Guardian_Bench",
         "short_name": "Guardian_Bench",
         "map": "Crystal",
-        "area": "Crystal"
+        "area": "Crystal",
+        "type": "bench"
     },
     "Mines_19": {
         "name": "Crystal_Grub_Crushers",
         "short_name": "Grub_Crushers",
         "map": "Crystal",
-        "area": "Crystal"
+        "area": "Crystal",
+        "type": null
     },
     "Mines_20": {
         "name": "Crystal_East_Tall",
         "short_name": "East_Tall",
         "map": "Crystal",
-        "area": "Crystal"
+        "area": "Crystal",
+        "type": null
     },
     "Mines_23": {
         "name": "Crystal_Crown_Whispering_Root",
         "short_name": "Crown_Whispering_Root",
         "map": "Crystal",
-        "area": "Crystal"
+        "area": "Crystal",
+        "type": null
     },
     "Mines_24": {
         "name": "Crystal_Crown_Grub",
         "short_name": "Crown_Grub",
         "map": "Crystal",
-        "area": "Crystal"
+        "area": "Crystal",
+        "type": null
     },
     "Mines_25": {
         "name": "Crystal_Crown_Climb",
         "short_name": "Crown_Climb",
         "map": "Crystal",
-        "area": "Crystal"
+        "area": "Crystal",
+        "type": null
     },
     "Mines_28": {
         "name": "Crystal_Outside_Mound",
         "short_name": "Outside_Mound",
         "map": "Crystal",
-        "area": "Crystal"
+        "area": "Crystal",
+        "type": null
     },
     "Mines_29": {
         "name": "Crystal_Dark_Bench",
         "short_name": "Dark_Bench",
         "map": "Crystal",
-        "area": "Crystal"
+        "area": "Crystal",
+        "type": "bench"
     },
     "Mines_30": {
         "name": "Crystal_Cornifer",
         "short_name": "Cornifer",
         "map": "Crystal",
-        "area": "Crystal"
+        "area": "Crystal",
+        "type": null
     },
     "Mines_31": {
         "name": "Crystal_Crystal_Heart_Gauntlet",
         "short_name": "Crystal_Heart_Gauntlet",
         "map": "Crystal",
-        "area": "Crystal"
+        "area": "Crystal",
+        "type": null
     },
     "Mines_32": {
         "name": "Crystal_Enraged_Guardian_Arena",
         "short_name": "Enraged_Guardian_Arena",
         "map": "Crystal",
-        "area": "Crystal"
+        "area": "Crystal",
+        "type": null
     },
     "Mines_33": {
         "name": "Crossroads_Peak_Dark_Toll",
         "short_name": "Peak_Dark_Toll",
         "map": "Crossroads",
-        "area": "Crossroads"
+        "area": "Crossroads",
+        "type": null
     },
     "Mines_34": {
         "name": "Crystal_Crown_Peak",
         "short_name": "Crown_Peak",
         "map": "Crystal",
-        "area": "Crystal"
+        "area": "Crystal",
+        "type": null
     },
     "Mines_35": {
         "name": "Crystal_Mound",
         "short_name": "Mound",
         "map": "Crystal",
-        "area": "Crystal"
+        "area": "Crystal",
+        "type": null
     },
     "Mines_36": {
         "name": "Crystal_Deep_Focus",
         "short_name": "Deep_Focus",
         "map": "Crystal",
-        "area": "Crystal"
+        "area": "Crystal",
+        "type": null
     },
     "Mines_37": {
         "name": "Crystal_Chest_Crushers",
         "short_name": "Chest_Crushers",
         "map": "Crystal",
-        "area": "Crystal"
+        "area": "Crystal",
+        "type": null
     },
     "Abyss_02": {
         "name": "Basin_Broken_Bridge",
         "short_name": "Broken_Bridge",
-        "map": "Basin",
-        "area": "Basin"
+        "map": "Waterways",
+        "area": "Waterways",
+        "type": null
     },
     "Abyss_03": {
         "name": "Basin_Tram",
         "short_name": "Tram",
         "map": "Basin",
-        "area": "Basin"
+        "area": "Basin",
+        "type": null
     },
     "Abyss_04": {
         "name": "Basin_Fountain",
         "short_name": "Fountain",
         "map": "Basin",
-        "area": "Basin"
+        "area": "Basin",
+        "type": null
     },
     "Abyss_05": {
         "name": "Basin_Palace_Grounds",
         "short_name": "Palace_Grounds",
         "map": "Basin",
-        "area": "Basin"
+        "area": "Basin",
+        "type": null
     },
     "Abyss_17": {
         "name": "Basin_Cloth",
         "short_name": "Cloth",
         "map": "Basin",
-        "area": "Basin"
+        "area": "Basin",
+        "type": null
     },
     "Abyss_18": {
         "name": "Basin_Corridor_to_Broken_Vessel",
         "short_name": "Corridor_to_Broken_Vessel",
         "map": "Basin",
-        "area": "Basin"
+        "area": "Basin",
+        "type": "bench"
     },
     "Abyss_19": {
         "name": "Basin_Broken_Vessel_Grub",
         "short_name": "Broken_Vessel_Grub",
         "map": "Basin",
-        "area": "Basin"
+        "area": "Basin",
+        "type": null
     },
     "Abyss_20": {
         "name": "Basin_Simple_Key",
         "short_name": "Simple_Key",
         "map": "Basin",
-        "area": "Basin"
+        "area": "Basin",
+        "type": null
     },
     "Abyss_21": {
         "name": "Basin_Monarch_Wings",
         "short_name": "Monarch_Wings",
         "map": "Basin",
-        "area": "Basin"
+        "area": "Basin",
+        "type": null
     },
     "Abyss_22": {
         "name": "Basin_Hidden_Station",
         "short_name": "Hidden_Station",
         "map": "Basin",
-        "area": "Basin"
+        "area": "Basin",
+        "type": "stag"
     },
     "Abyss_06_Core": {
         "name": "Abyss_Core",
         "short_name": "Core",
         "map": "Abyss",
-        "area": "Abyss"
+        "area": "Abyss",
+        "type": null
     },
     "Abyss_08": {
         "name": "Abyss_Lifeblood_Core",
         "short_name": "Lifeblood_Core",
         "map": "Abyss",
-        "area": "Abyss"
+        "area": "Abyss",
+        "type": null
     },
     "Abyss_09": {
         "name": "Abyss_Lighthouse_Climb",
         "short_name": "Lighthouse_Climb",
         "map": "Abyss",
-        "area": "Abyss"
+        "area": "Abyss",
+        "type": null
     },
     "Abyss_10": {
         "name": "Abyss_Shade_Cloak",
         "short_name": "Shade_Cloak",
         "map": "Abyss",
-        "area": "Abyss"
+        "area": "Abyss",
+        "type": null
     },
     "Abyss_12": {
         "name": "Abyss_Shriek",
         "short_name": "Shriek",
         "map": "Abyss",
-        "area": "Abyss"
+        "area": "Abyss",
+        "type": null
     },
     "Abyss_15": {
         "name": "Abyss_Birthplace",
         "short_name": "Birthplace",
         "map": "Abyss",
-        "area": "Abyss"
+        "area": "Abyss",
+        "type": null
     },
     "Abyss_16": {
         "name": "Abyss_Corridor_to_Lighthouse",
         "short_name": "Corridor_to_Lighthouse",
         "map": "Abyss",
-        "area": "Abyss"
+        "area": "Abyss",
+        "type": null
     },
     "Abyss_Lighthouse_room": {
         "name": "Abyss_Lighthouse",
         "short_name": "Lighthouse",
         "map": "Abyss",
-        "area": "Abyss"
+        "area": "Abyss",
+        "type": null
     },
     "Crossroads_46b": {
         "name": "Grounds_Tram",
         "short_name": "Tram",
         "map": "Grounds",
-        "area": "Grounds"
+        "area": "Grounds",
+        "type": null
     },
     "Crossroads_50": {
         "name": "Grounds_Blue_Lake",
         "short_name": "Blue_Lake",
         "map": "Grounds",
-        "area": "Grounds"
+        "area": "Grounds",
+        "type": null
     },
     "RestingGrounds_02": {
         "name": "Grounds_Xero",
         "short_name": "Xero",
         "map": "Grounds",
-        "area": "Grounds"
+        "area": "Grounds",
+        "type": null
     },
     "RestingGrounds_04": {
         "name": "Grounds_Dream_Nail_Entrance",
         "short_name": "Dream_Nail_Entrance",
         "map": "Grounds",
-        "area": "Grounds"
+        "area": "Grounds",
+        "type": null
     },
     "RestingGrounds_05": {
         "name": "Grounds_Whispering_Root",
         "short_name": "Whispering_Root",
         "map": "Grounds",
-        "area": "Grounds"
+        "area": "Grounds",
+        "type": null
     },
     "RestingGrounds_06": {
         "name": "Grounds_Corridor_Below_Xero",
         "short_name": "Corridor_Below_Xero",
         "map": "Grounds",
-        "area": "Grounds"
+        "area": "Grounds",
+        "type": null
     },
     "RestingGrounds_07": {
         "name": "Grounds_Seer",
         "short_name": "Seer",
         "map": "Grounds",
-        "area": "Grounds"
+        "area": "Grounds",
+        "type": "shop"
     },
     "RestingGrounds_08": {
         "name": "Grounds_Spirit's_Glade",
         "short_name": "Spirit's_Glade",
         "map": "Grounds",
-        "area": "Grounds"
+        "area": "Grounds",
+        "type": null
     },
     "RestingGrounds_09": {
         "name": "Grounds_Stag",
         "short_name": "Stag",
         "map": "Grounds",
-        "area": "Grounds"
+        "area": "Grounds",
+        "type": "stag"
     },
     "RestingGrounds_10": {
         "name": "Grounds_Crypts",
         "short_name": "Crypts",
         "map": "Grounds",
-        "area": "Grounds"
+        "area": "Grounds",
+        "type": null
     },
     "RestingGrounds_12": {
         "name": "Grounds_Outside_Grey_Mourner",
         "short_name": "Outside_Grey_Mourner",
         "map": "Grounds",
-        "area": "Grounds"
+        "area": "Grounds",
+        "type": "bench"
     },
     "RestingGrounds_17": {
         "name": "Grounds_Dreamshield",
         "short_name": "Dreamshield",
         "map": "Grounds",
-        "area": "Grounds"
+        "area": "Grounds",
+        "type": null
     },
     "Room_Mansion": {
         "name": "Grounds_Grey_Mourner",
         "short_name": "Grey_Mourner",
         "map": "Grounds",
-        "area": "Grounds"
+        "area": "Grounds",
+        "type": null
     },
     "Ruins2_10": {
         "name": "Grounds_Elevator",
         "short_name": "Elevator",
         "map": "Grounds",
-        "area": "Grounds"
+        "area": "Grounds",
+        "type": null
     },
     "Abyss_03_c": {
         "name": "Edge_Tram",
         "short_name": "Tram",
         "map": "Edge",
-        "area": "Edge"
+        "area": "Edge",
+        "type": null
     },
     "Deepnest_East_01": {
         "name": "Edge_Left_Of_Hive",
         "short_name": "Left_Of_Hive",
         "map": "Edge",
-        "area": "Edge"
+        "area": "Edge",
+        "type": null
     },
     "Deepnest_East_02": {
         "name": "Edge_Above_Hive",
         "short_name": "Above_Hive",
         "map": "Edge",
-        "area": "Edge"
+        "area": "Edge",
+        "type": null
     },
     "Deepnest_East_03": {
         "name": "Edge_Entrance",
         "short_name": "Entrance",
         "map": "Edge",
-        "area": "Edge"
+        "area": "Edge",
+        "type": null
     },
     "Deepnest_East_04": {
         "name": "Edge_Bardoon",
         "short_name": "Bardoon",
         "map": "Edge",
-        "area": "Edge"
+        "area": "Edge",
+        "type": null
     },
     "Deepnest_East_06": {
         "name": "Edge_Outside_Oro",
         "short_name": "Outside_Oro",
         "map": "Edge",
-        "area": "Edge"
+        "area": "Edge",
+        "type": "bench"
     },
     "Deepnest_East_07": {
         "name": "Edge_Whispering_Root",
         "short_name": "Whispering_Root",
         "map": "Edge",
-        "area": "Edge"
+        "area": "Edge",
+        "type": null
     },
     "Deepnest_East_08": {
         "name": "Edge_Great_Hopper_Idol",
         "short_name": "Great_Hopper_Idol",
         "map": "Edge",
-        "area": "Edge"
+        "area": "Edge",
+        "type": null
     },
     "Deepnest_East_09": {
         "name": "Edge_Corridor_Outside_Colosseum",
         "short_name": "Corridor_Outside_Colosseum",
         "map": "Edge",
-        "area": "Edge"
+        "area": "Edge",
+        "type": null
     },
     "Deepnest_East_10": {
         "name": "Edge_Markoth_Arena",
         "short_name": "Markoth_Arena",
         "map": "Edge",
-        "area": "Edge"
+        "area": "Edge",
+        "type": null
     },
     "Deepnest_East_11": {
         "name": "Edge_Below_Camp_Bench",
         "short_name": "Below_Camp_Bench",
         "map": "Edge",
-        "area": "Edge"
+        "area": "Edge",
+        "type": null
     },
     "Deepnest_East_12": {
         "name": "Edge_Hornet_Sentinel_Corridor",
         "short_name": "Hornet_Sentinel_Corridor",
         "map": "Edge",
-        "area": "Edge"
+        "area": "Edge",
+        "type": null
     },
     "Deepnest_East_13": {
         "name": "Edge_Camp_Bench",
         "short_name": "Camp_Bench",
         "map": "Edge",
-        "area": "Edge"
+        "area": "Edge",
+        "type": "bench"
     },
     "Deepnest_East_14": {
         "name": "Edge_Below_Oro",
         "short_name": "Below_Oro",
         "map": "Edge",
-        "area": "Edge"
+        "area": "Edge",
+        "type": null
     },
     "Deepnest_East_14b": {
         "name": "Edge_Quick_Slash",
         "short_name": "Quick_Slash",
         "map": "Edge",
-        "area": "Edge"
+        "area": "Edge",
+        "type": null
     },
     "Deepnest_East_15": {
         "name": "Edge_Lifeblood",
         "short_name": "Lifeblood",
         "map": "Edge",
-        "area": "Edge"
+        "area": "Edge",
+        "type": null
     },
     "Deepnest_East_16": {
         "name": "Edge_Oro_Scarecrow",
         "short_name": "Oro_Scarecrow",
         "map": "Edge",
-        "area": "Edge"
+        "area": "Edge",
+        "type": null
     },
     "Deepnest_East_17": {
         "name": "Edge_420_Geo_Rock",
         "short_name": "420_Geo_Rock",
         "map": "Edge",
-        "area": "Edge"
+        "area": "Edge",
+        "type": null
     },
     "Deepnest_East_18": {
         "name": "Edge_Outside_Markoth",
         "short_name": "Outside_Markoth",
         "map": "Edge",
-        "area": "Edge"
+        "area": "Edge",
+        "type": null
     },
     "Deepnest_East_Hornet": {
         "name": "Edge_Hornet_Sentinel_Arena",
         "short_name": "Hornet_Sentinel_Arena",
         "map": "Edge",
-        "area": "Edge"
+        "area": "Edge",
+        "type": null
     },
     "GG_Lurker": {
         "name": "Edge_Pale_Lurker",
         "short_name": "Pale_Lurker",
         "map": "Edge",
-        "area": "Edge"
+        "area": "Edge",
+        "type": null
     },
     "Room_Colosseum_01": {
         "name": "Edge_Colo_Entrance",
         "short_name": "Colo_Entrance",
         "map": "Edge",
-        "area": "Edge"
+        "area": "Edge",
+        "type": null
     },
     "Room_Colosseum_02": {
         "name": "Edge_Colo_Bench",
         "short_name": "Colo_Bench",
         "map": "Edge",
-        "area": "Edge"
+        "area": "Edge",
+        "type": "bench"
     },
     "Room_Colosseum_Bronze": {
         "name": "Edge_Colo_1_Arena",
         "short_name": "Colo_1_Arena",
         "map": "Edge",
-        "area": "Edge"
+        "area": "Edge",
+        "type": null
     },
     "Room_Colosseum_Gold": {
         "name": "Edge_Colo_3_Arena",
         "short_name": "Colo_3_Arena",
         "map": "Edge",
-        "area": "Edge"
+        "area": "Edge",
+        "type": null
     },
     "Room_Colosseum_Silver": {
         "name": "Edge_Colo_2_Arena",
         "short_name": "Colo_2_Arena",
         "map": "Edge",
-        "area": "Edge"
+        "area": "Edge",
+        "type": null
     },
     "Room_Colosseum_Spectate": {
         "name": "Edge_Colo_Spectate",
         "short_name": "Colo_Spectate",
         "map": "Edge",
-        "area": "Edge"
+        "area": "Edge",
+        "type": null
     },
     "Room_nailmaster_03": {
         "name": "Edge_Oro",
         "short_name": "Oro",
         "map": "Edge",
-        "area": "Edge"
+        "area": "Edge",
+        "type": null
     },
     "Room_Wyrm": {
         "name": "Edge_Cast-Off_Shell",
         "short_name": "Cast-Off_Shell",
         "map": "Edge",
-        "area": "Edge"
+        "area": "Edge",
+        "type": null
     },
     "Abyss_01": {
         "name": "City_Broken_Elevator",
         "short_name": "Broken_Elevator",
         "map": "Waterways",
-        "area": "Waterways"
+        "area": "Waterways",
+        "type": null
     },
     "Crossroads_49b": {
         "name": "City_Left_Elevator",
         "short_name": "Left_Elevator",
         "map": "City",
-        "area": "City"
+        "area": "City",
+        "type": null
     },
     "Room_nailsmith": {
         "name": "City_Nailsmith",
         "short_name": "Nailsmith",
         "map": "City",
-        "area": "City"
+        "area": "City",
+        "type": "shop"
     },
     "Ruins_Bathhouse": {
         "name": "City_Pleasure_House_Bench",
         "short_name": "Pleasure_House_Bench",
         "map": "City",
-        "area": "City"
+        "area": "City",
+        "type": null
     },
     "Ruins_Elevator": {
         "name": "City_Pleasure_House_Elevator",
         "short_name": "Pleasure_House_Elevator",
         "map": "City",
-        "area": "City"
+        "area": "City",
+        "type": null
     },
     "Ruins_House_01": {
         "name": "City_Guarded_Grub",
         "short_name": "Guarded_Grub",
         "map": "City",
-        "area": "City"
+        "area": "City",
+        "type": null
     },
     "Ruins_House_02": {
         "name": "City_Gorgeous_Husk",
         "short_name": "Gorgeous_Husk",
         "map": "City",
-        "area": "City"
+        "area": "City",
+        "type": null
     },
     "Ruins_House_03": {
         "name": "City_Emilitia",
         "short_name": "Emilitia",
         "map": "City",
-        "area": "City"
+        "area": "City",
+        "type": null
     },
     "Ruins1_01": {
         "name": "City_Pilgrim's_Entrance",
         "short_name": "Pilgrim's_Entrance",
         "map": "City",
-        "area": "City"
+        "area": "City",
+        "type": null
     },
     "Ruins1_02": {
         "name": "City_Quirrel_Bench",
         "short_name": "Quirrel_Bench",
         "map": "City",
-        "area": "City"
+        "area": "City",
+        "type": "bench"
     },
     "Ruins1_03": {
         "name": "City_Rafters",
         "short_name": "Rafters",
         "map": "City",
-        "area": "City"
+        "area": "City",
+        "type": null
     },
     "Ruins1_04": {
         "name": "City_Outside_Nailsmith",
         "short_name": "Outside_Nailsmith",
         "map": "City",
-        "area": "City"
+        "area": "City",
+        "type": null
     },
     "Ruins1_05": {
         "name": "City_Grub_Above_Lemm",
         "short_name": "Grub_Above_Lemm",
         "map": "City",
-        "area": "City"
+        "area": "City",
+        "type": null
     },
     "Ruins1_05b": {
         "name": "City_Lemm",
         "short_name": "Lemm",
         "map": "City",
-        "area": "City"
+        "area": "City",
+        "type": "shop"
     },
     "Ruins1_05c": {
         "name": "City_Egg_Above_Lemm",
         "short_name": "Egg_Above_Lemm",
         "map": "City",
-        "area": "City"
+        "area": "City",
+        "type": null
     },
     "Ruins1_06": {
         "name": "City_Corridor_to_Storerooms",
         "short_name": "Corridor_to_Storerooms",
         "map": "City",
-        "area": "City"
+        "area": "City",
+        "type": null
     },
     "Ruins1_09": {
         "name": "City_Soul_Twister_Arena",
         "short_name": "Soul_Twister_Arena",
         "map": "City",
-        "area": "City"
+        "area": "City",
+        "type": null
     },
     "Ruins1_17": {
         "name": "City_Whispering_Root",
         "short_name": "Whispering_Root",
         "map": "City",
-        "area": "City"
+        "area": "City",
+        "type": null
     },
     "Ruins1_18": {
         "name": "City_Corridor_to_Spire",
         "short_name": "Corridor_to_Spire",
         "map": "City",
-        "area": "City"
+        "area": "City",
+        "type": null
     },
     "Ruins1_23": {
         "name": "City_Sanctum_Entrance",
         "short_name": "Sanctum_Entrance",
         "map": "City",
-        "area": "City"
+        "area": "City",
+        "type": null
     },
     "Ruins1_24": {
         "name": "City_Soul_Master_Arena",
         "short_name": "Soul_Master_Arena",
         "map": "City",
-        "area": "City"
+        "area": "City",
+        "type": null
     },
     "Ruins1_25": {
         "name": "City_Sanctum_East_Elevators",
         "short_name": "Sanctum_East_Elevators",
         "map": "City",
-        "area": "City"
+        "area": "City",
+        "type": null
     },
     "Ruins1_27": {
         "name": "City_Hollow_Knight_Fountain",
         "short_name": "Hollow_Knight_Fountain",
         "map": "City",
-        "area": "City"
+        "area": "City",
+        "type": null
     },
     "Ruins1_28": {
         "name": "City_Storerooms",
         "short_name": "Storerooms",
         "map": "City",
-        "area": "City"
+        "area": "City",
+        "type": null
     },
     "Ruins1_29": {
         "name": "City_Storerooms_Stag",
         "short_name": "Storerooms_Stag",
         "map": "City",
-        "area": "City"
+        "area": "City",
+        "type": "stag"
     },
     "Ruins1_30": {
         "name": "City_Sanctum_Spell_Twister",
         "short_name": "Sanctum_Spell_Twister",
         "map": "City",
-        "area": "City"
+        "area": "City",
+        "type": null
     },
     "Ruins1_31": {
         "name": "City_Toll_Bench",
         "short_name": "Toll_Bench",
         "map": "City",
-        "area": "City"
+        "area": "City",
+        "type": "bench"
     },
     "Ruins1_31b": {
         "name": "City_Shade_Soul_Arena",
         "short_name": "Shade_Soul_Arena",
         "map": "City",
-        "area": "City"
+        "area": "City",
+        "type": null
     },
     "Ruins1_32": {
         "name": "City_Soul_Master_Rewards",
         "short_name": "Soul_Master_Rewards",
         "map": "City",
-        "area": "City"
+        "area": "City",
+        "type": null
     },
     "Ruins2_01": {
         "name": "City_Spire_Great_Husk",
         "short_name": "Spire_Great_Husk",
         "map": "City",
-        "area": "City"
+        "area": "City",
+        "type": null
     },
     "Ruins2_01_b": {
         "name": "City_Spire_Base",
         "short_name": "Spire_Base",
         "map": "City",
-        "area": "City"
+        "area": "City",
+        "type": null
     },
     "Ruins2_03": {
         "name": "City_Spire_Watchers",
         "short_name": "Spire_Watchers",
         "map": "City",
-        "area": "City"
+        "area": "City",
+        "type": null
     },
     "Ruins2_03b": {
         "name": "City_Spire_Below_Watchers",
         "short_name": "Spire_Below_Watchers",
         "map": "City",
-        "area": "City"
+        "area": "City",
+        "type": null
     },
     "Ruins2_04": {
         "name": "City_Right_Hub",
         "short_name": "Right_Hub",
         "map": "City",
-        "area": "City"
+        "area": "City",
+        "type": null
     },
     "Ruins2_05": {
         "name": "City_Above_King's",
         "short_name": "Above_King's",
         "map": "City",
-        "area": "City"
+        "area": "City",
+        "type": null
     },
     "Ruins2_06": {
         "name": "City_King's_Station",
         "short_name": "King's_Station",
         "map": "City",
-        "area": "City"
+        "area": "City",
+        "type": null
     },
     "Ruins2_07": {
         "name": "City_Grub_Below_King's",
         "short_name": "Grub_Below_King's",
         "map": "City",
-        "area": "City"
+        "area": "City",
+        "type": null
     },
     "Ruins2_08": {
         "name": "City_King's_Stag",
         "short_name": "King's_Stag",
         "map": "City",
-        "area": "City"
+        "area": "City",
+        "type": "stag"
     },
     "Ruins2_09": {
         "name": "City_King's_Vessel_Fragment",
         "short_name": "King's_Vessel_Fragment",
         "map": "City",
-        "area": "City"
+        "area": "City",
+        "type": null
     },
     "Ruins2_10b": {
         "name": "City_Right_Elevator",
         "short_name": "Right_Elevator",
         "map": "City",
-        "area": "City"
+        "area": "City",
+        "type": null
     },
     "Ruins2_11": {
         "name": "City_Collector_Arena",
         "short_name": "Collector_Arena",
         "map": "City",
-        "area": "City"
+        "area": "City",
+        "type": null
     },
     "Ruins2_11_b": {
         "name": "City_Tower_of_Love",
         "short_name": "Tower_of_Love",
         "map": "City",
-        "area": "City"
+        "area": "City",
+        "type": null
     },
     "Ruins2_Watcher_Room": {
         "name": "City_Lurien_Elevator",
         "short_name": "Lurien_Elevator",
         "map": "City",
-        "area": "City"
+        "area": "City",
+        "type": null
     },
     "Hive_01": {
         "name": "Hive_Entrance",
         "short_name": "Entrance",
         "map": "Hive",
-        "area": "Hive"
+        "area": "Hive",
+        "type": "bench"
     },
     "Hive_02": {
         "name": "Hive_Whispering_Root",
         "short_name": "Whispering_Root",
         "map": "Hive",
-        "area": "Hive"
+        "area": "Hive",
+        "type": null
     },
     "Hive_03": {
         "name": "Hive_Outside_Grub",
         "short_name": "Outside_Grub",
         "map": "Hive",
-        "area": "Hive"
+        "area": "Hive",
+        "type": null
     },
     "Hive_03_c": {
         "name": "Hive_Outside_Shortcut",
         "short_name": "Outside_Shortcut",
         "map": "Hive",
-        "area": "Hive"
+        "area": "Hive",
+        "type": null
     },
     "Hive_04": {
         "name": "Hive_Mask_Shard",
         "short_name": "Mask_Shard",
         "map": "Hive",
-        "area": "Hive"
+        "area": "Hive",
+        "type": null
     },
     "Hive_05": {
         "name": "Hive_Knight_Arena",
         "short_name": "Knight_Arena",
         "map": "Hive",
-        "area": "Hive"
+        "area": "Hive",
+        "type": null
     },
     "GG_Pipeway": {
         "name": "Waterways_Flukemunga_Corridor",
         "short_name": "Flukemunga_Corridor",
         "map": "Waterways",
-        "area": "Waterways"
+        "area": "Waterways",
+        "type": null
     },
     "GG_Waterways": {
         "name": "Waterways_Junk_Pit",
         "short_name": "Junk_Pit",
         "map": "Waterways",
-        "area": "Waterways"
+        "area": "Waterways",
+        "type": null
     },
     "Room_GG_Shortcut": {
         "name": "Waterways_Fluke_Hermit",
         "short_name": "Fluke_Hermit",
         "map": "Waterways",
-        "area": "Waterways"
+        "area": "Waterways",
+        "type": null
     },
     "Waterways_01": {
         "name": "Waterways_Entrance",
         "short_name": "Entrance",
         "map": "Waterways",
-        "area": "Waterways"
+        "area": "Waterways",
+        "type": null
     },
     "Waterways_02": {
         "name": "Waterways_Main_Bench",
         "short_name": "Main_Bench",
         "map": "Waterways",
-        "area": "Waterways"
+        "area": "Waterways",
+        "type": "bench"
     },
     "Waterways_03": {
         "name": "Waterways_Tuk",
         "short_name": "Tuk",
         "map": "Waterways",
-        "area": "Waterways"
+        "area": "Waterways",
+        "type": "shop"
     },
     "Waterways_04": {
         "name": "Waterways_Hidden_Grub",
         "short_name": "Hidden_Grub",
         "map": "Waterways",
-        "area": "Waterways"
+        "area": "Waterways",
+        "type": null
     },
     "Waterways_04b": {
         "name": "Waterways_Mask_Shard",
         "short_name": "Mask_Shard",
         "map": "Waterways",
-        "area": "Waterways"
+        "area": "Waterways",
+        "type": null
     },
     "Waterways_05": {
         "name": "Waterways_Dung_Defender_Arena",
         "short_name": "Dung_Defender_Arena",
         "map": "Waterways",
-        "area": "Waterways"
+        "area": "Waterways",
+        "type": null
     },
     "Waterways_06": {
         "name": "Waterways_Corridor_to_Broken_Elevator",
         "short_name": "Corridor_to_Broken_Elevator",
         "map": "Waterways",
-        "area": "Waterways"
+        "area": "Waterways",
+        "type": null
     },
     "Waterways_07": {
         "name": "Waterways_Left_Of_Isma's_Grove",
         "short_name": "Left_Of_Isma's_Grove",
         "map": "Waterways",
-        "area": "Waterways"
+        "area": "Waterways",
+        "type": null
     },
     "Waterways_08": {
         "name": "Waterways_Outside_Flukemarm",
         "short_name": "Outside_Flukemarm",
         "map": "Waterways",
-        "area": "Waterways"
+        "area": "Waterways",
+        "type": null
     },
     "Waterways_09": {
         "name": "Waterways_Cornifer",
         "short_name": "Cornifer",
         "map": "Waterways",
-        "area": "Waterways"
+        "area": "Waterways",
+        "type": null
     },
     "Waterways_12": {
         "name": "Waterways_Flukemarm_Arena",
         "short_name": "Flukemarm_Arena",
         "map": "Waterways",
-        "area": "Waterways"
+        "area": "Waterways",
+        "type": null
     },
     "Waterways_13": {
         "name": "Waterways_Isma's_Grove",
         "short_name": "Isma's_Grove",
         "map": "Waterways",
-        "area": "Waterways"
+        "area": "Waterways",
+        "type": null
     },
     "Waterways_14": {
         "name": "Waterways_Edge_Acid_Corridor",
         "short_name": "Edge_Acid_Corridor",
         "map": "Waterways",
-        "area": "Waterways"
+        "area": "Waterways",
+        "type": null
     },
     "Waterways_15": {
         "name": "Waterways_Dung_Defender's_Cave",
         "short_name": "Dung_Defender's_Cave",
         "map": "Waterways",
-        "area": "Waterways"
+        "area": "Waterways",
+        "type": null
     },
     "Abyss_03_b": {
         "name": "Deepnest_Tram",
         "short_name": "Tram",
         "map": "Deepnest",
-        "area": "Deepnest"
+        "area": "Deepnest",
+        "type": null
     },
     "Deepnest_01b": {
         "name": "Deepnest_Upper_Cornifer",
         "short_name": "Upper_Cornifer",
         "map": "Deepnest",
-        "area": "Deepnest"
+        "area": "Deepnest",
+        "type": null
     },
     "Deepnest_02": {
         "name": "Deepnest_Outside_Mimics",
         "short_name": "Outside_Mimics",
         "map": "Deepnest",
-        "area": "Deepnest"
+        "area": "Deepnest",
+        "type": null
     },
     "Deepnest_03": {
         "name": "Deepnest_Left_Of_Hot_Spring",
         "short_name": "Left_Of_Hot_Spring",
         "map": "Deepnest",
-        "area": "Deepnest"
+        "area": "Deepnest",
+        "type": null
     },
     "Deepnest_09": {
         "name": "Deepnest_Distant_Village_Stag",
         "short_name": "Distant_Village_Stag",
         "map": "Deepnest",
-        "area": "Deepnest"
+        "area": "Deepnest",
+        "type": "stag"
     },
     "Deepnest_10": {
         "name": "Deepnest_Distant_Village",
         "short_name": "Distant_Village",
         "map": "Deepnest",
-        "area": "Deepnest"
+        "area": "Deepnest",
+        "type": null
     },
     "Deepnest_14": {
         "name": "Deepnest_Failed_Tramway_Bench",
         "short_name": "Failed_Tramway_Bench",
         "map": "Deepnest",
-        "area": "Deepnest"
+        "area": "Deepnest",
+        "type": "bench"
     },
     "Deepnest_16": {
         "name": "Deepnest_After_Lower_Cornifer",
         "short_name": "After_Lower_Cornifer",
         "map": "Deepnest",
-        "area": "Deepnest"
+        "area": "Deepnest",
+        "type": null
     },
     "Deepnest_17": {
         "name": "Deepnest_Garpede_Corridor_Below_Cornifer",
         "short_name": "Garpede_Corridor_Below_Cornifer",
         "map": "Deepnest",
-        "area": "Deepnest"
+        "area": "Deepnest",
+        "type": null
     },
     "Deepnest_26": {
         "name": "Deepnest_Failed_Tramway_Lifeblood",
         "short_name": "Failed_Tramway_Lifeblood",
         "map": "Deepnest",
-        "area": "Deepnest"
+        "area": "Deepnest",
+        "type": null
     },
     "Deepnest_26b": {
         "name": "Deepnest_Tram_Pass",
         "short_name": "Tram_Pass",
         "map": "Deepnest",
-        "area": "Deepnest"
+        "area": "Deepnest",
+        "type": null
     },
     "Deepnest_30": {
         "name": "Deepnest_Hot_Spring",
         "short_name": "Hot_Spring",
         "map": "Deepnest",
-        "area": "Deepnest"
+        "area": "Deepnest",
+        "type": "bench"
     },
     "Deepnest_31": {
         "name": "Deepnest_Nosk_Corridor",
         "short_name": "Nosk_Corridor",
         "map": "Deepnest",
-        "area": "Deepnest"
+        "area": "Deepnest",
+        "type": null
     },
     "Deepnest_32": {
         "name": "Deepnest_Nosk_Arena",
         "short_name": "Nosk_Arena",
         "map": "Deepnest",
-        "area": "Deepnest"
+        "area": "Deepnest",
+        "type": null
     },
     "Deepnest_33": {
         "name": "Deepnest_Zote_Arena",
         "short_name": "Zote_Arena",
         "map": "Deepnest",
-        "area": "Deepnest"
+        "area": "Deepnest",
+        "type": null
     },
     "Deepnest_34": {
         "name": "Deepnest_First_Devout",
         "short_name": "First_Devout",
         "map": "Deepnest",
-        "area": "Deepnest"
+        "area": "Deepnest",
+        "type": null
     },
     "Deepnest_35": {
         "name": "Deepnest_Outside_Galien",
         "short_name": "Outside_Galien",
         "map": "Deepnest",
-        "area": "Deepnest"
+        "area": "Deepnest",
+        "type": null
     },
     "Deepnest_36": {
         "name": "Deepnest_Mimics",
         "short_name": "Mimics",
         "map": "Deepnest",
-        "area": "Deepnest"
+        "area": "Deepnest",
+        "type": null
     },
     "Deepnest_37": {
         "name": "Deepnest_Corridor_to_Tram",
         "short_name": "Corridor_to_Tram",
         "map": "Deepnest",
-        "area": "Deepnest"
+        "area": "Deepnest",
+        "type": null
     },
     "Deepnest_38": {
         "name": "Deepnest_Vessel_Fragment",
         "short_name": "Vessel_Fragment",
         "map": "Deepnest",
-        "area": "Deepnest"
+        "area": "Deepnest",
+        "type": null
     },
     "Deepnest_39": {
         "name": "Deepnest_Whispering_Root",
         "short_name": "Whispering_Root",
         "map": "Deepnest",
-        "area": "Deepnest"
+        "area": "Deepnest",
+        "type": null
     },
     "Deepnest_40": {
         "name": "Deepnest_Galien_Arena",
         "short_name": "Galien_Arena",
         "map": "Deepnest",
-        "area": "Deepnest"
+        "area": "Deepnest",
+        "type": null
     },
     "Deepnest_41": {
         "name": "Deepnest_Midwife",
         "short_name": "Midwife",
         "map": "Deepnest",
-        "area": "Deepnest"
+        "area": "Deepnest",
+        "type": null
     },
     "Deepnest_42": {
         "name": "Deepnest_Outside_Mask_Maker",
         "short_name": "Outside_Mask_Maker",
         "map": "Deepnest",
-        "area": "Deepnest"
+        "area": "Deepnest",
+        "type": null
     },
     "Deepnest_44": {
         "name": "Deepnest_Sharp_Shadow",
         "short_name": "Sharp_Shadow",
         "map": "Deepnest",
-        "area": "Deepnest"
+        "area": "Deepnest",
+        "type": null
     },
     "Deepnest_45_v02": {
         "name": "Deepnest_Weaver's_Den",
         "short_name": "Weaver's_Den",
         "map": "Deepnest",
-        "area": "Deepnest"
+        "area": "Deepnest",
+        "type": null
     },
     "Deepnest_Spider_Town": {
         "name": "Deepnest_Beast's_Den",
         "short_name": "Beast's_Den",
         "map": "Deepnest",
-        "area": "Deepnest"
+        "area": "Deepnest",
+        "type": "bench"
     },
     "Fungus2_25": {
         "name": "Deepnest_Lower_Cornifer",
         "short_name": "Lower_Cornifer",
         "map": "Deepnest",
-        "area": "Deepnest"
+        "area": "Deepnest",
+        "type": null
     },
     "Room_Mask_Maker": {
         "name": "Deepnest_Mask_Maker",
         "short_name": "Mask_Maker",
         "map": "Deepnest",
-        "area": "Deepnest"
+        "area": "Deepnest",
+        "type": null
     },
     "Room_spider_small": {
         "name": "Deepnest_Brumm",
         "short_name": "Brumm",
         "map": "Deepnest",
-        "area": "Deepnest"
+        "area": "Deepnest",
+        "type": null
     },
     "Deepnest_43": {
         "name": "Gardens_Corridor_To_Deepnest",
         "short_name": "Corridor_To_Deepnest",
         "map": "Gardens",
-        "area": "Gardens"
+        "area": "Gardens",
+        "type": null
     },
     "Fungus1_23": {
         "name": "Gardens_First_Loodle_Corridor",
         "short_name": "First_Loodle_Corridor",
         "map": "Gardens",
-        "area": "Gardens"
+        "area": "Gardens",
+        "type": null
     },
     "Fungus1_24": {
         "name": "Gardens_Cornifer",
         "short_name": "Cornifer",
         "map": "Gardens",
-        "area": "Gardens"
+        "area": "Gardens",
+        "type": "bench"
     },
     "Fungus3_04": {
         "name": "Gardens_Before_Petra_Arena",
         "short_name": "Before_Petra_Arena",
         "map": "Gardens",
-        "area": "Gardens"
+        "area": "Gardens",
+        "type": null
     },
     "Fungus3_05": {
         "name": "Gardens_Petra_Arena",
         "short_name": "Petra_Arena",
         "map": "Gardens",
-        "area": "Gardens"
+        "area": "Gardens",
+        "type": null
     },
     "Fungus3_08": {
         "name": "Gardens_Lower_Petra_Corridor",
         "short_name": "Lower_Petra_Corridor",
         "map": "Gardens",
-        "area": "Gardens"
+        "area": "Gardens",
+        "type": null
     },
     "Fungus3_10": {
         "name": "Gardens_Main_Arena",
         "short_name": "Main_Arena",
         "map": "Gardens",
-        "area": "Gardens"
+        "area": "Gardens",
+        "type": null
     },
     "Fungus3_11": {
         "name": "Gardens_Whispering_Root",
         "short_name": "Whispering_Root",
         "map": "Gardens",
-        "area": "Gardens"
+        "area": "Gardens",
+        "type": null
     },
     "Fungus3_13": {
         "name": "Gardens_Outside_Stag",
         "short_name": "Outside_Stag",
         "map": "Gardens",
-        "area": "Gardens"
+        "area": "Gardens",
+        "type": null
     },
     "Fungus3_21": {
         "name": "Gardens_Corridor_to_Traitor_Lord",
         "short_name": "Corridor_to_Traitor_Lord",
         "map": "Gardens",
-        "area": "Gardens"
+        "area": "Gardens",
+        "type": null
     },
     "Fungus3_22": {
         "name": "Gardens_Upper_Grub",
         "short_name": "Upper_Grub",
         "map": "Gardens",
-        "area": "Gardens"
+        "area": "Gardens",
+        "type": null
     },
     "Fungus3_23": {
         "name": "Gardens_Traitor_Lord_Arena",
         "short_name": "Traitor_Lord_Arena",
         "map": "Gardens",
-        "area": "Gardens"
+        "area": "Gardens",
+        "type": null
     },
     "Fungus3_34": {
         "name": "Gardens_Entrance",
         "short_name": "Entrance",
         "map": "Gardens",
-        "area": "Gardens"
+        "area": "Gardens",
+        "type": null
     },
     "Fungus3_39": {
         "name": "Gardens_Moss_Prophet",
         "short_name": "Moss_Prophet",
         "map": "Gardens",
-        "area": "Gardens"
+        "area": "Gardens",
+        "type": null
     },
     "Fungus3_49": {
         "name": "Gardens_Traitor's_Child's_Grave",
         "short_name": "Traitor's_Child's_Grave",
         "map": "Gardens",
-        "area": "Gardens"
+        "area": "Gardens",
+        "type": null
     },
     "Fungus3_40": {
         "name": "Gardens_Gardens_Stag",
         "short_name": "Gardens_Stag",
         "map": "Gardens",
-        "area": "Gardens"
+        "area": "Gardens",
+        "type": "stag"
     },
     "Fungus3_48": {
         "name": "Gardens_Outside_White_Lady",
         "short_name": "Outside_White_Lady",
         "map": "Gardens",
-        "area": "Gardens"
+        "area": "Gardens",
+        "type": null
     },
     "Fungus3_50": {
         "name": "Gardens_Toll_Bench",
         "short_name": "Toll_Bench",
         "map": "Gardens",
-        "area": "Gardens"
+        "area": "Gardens",
+        "type": "bench"
     },
     "Room_Queen": {
         "name": "Gardens_White_Lady",
         "short_name": "White_Lady",
         "map": "Gardens",
-        "area": "Gardens"
+        "area": "Gardens",
+        "type": null
     },
     "White_Palace_01": {
         "name": "Palace_Entrance",
         "short_name": "Entrance",
         "map": "Palace",
-        "area": "Palace"
+        "area": "Palace",
+        "type": "bench"
     },
     "White_Palace_02": {
         "name": "Palace_First_Mold",
         "short_name": "First_Mold",
         "map": "Palace",
-        "area": "Palace"
+        "area": "Palace",
+        "type": null
     },
     "White_Palace_03_hub": {
         "name": "Palace_Hub",
         "short_name": "Hub",
         "map": "Palace",
-        "area": "Palace"
+        "area": "Palace",
+        "type": "bench"
     },
     "White_Palace_04": {
         "name": "Palace_Left_Of_Hub",
         "short_name": "Left_Of_Hub",
         "map": "Palace",
-        "area": "Palace"
+        "area": "Palace",
+        "type": null
     },
     "White_Palace_05": {
         "name": "Palace_Saw_Room",
         "short_name": "Saw_Room",
         "map": "Palace",
-        "area": "Palace"
+        "area": "Palace",
+        "type": null
     },
     "White_Palace_06": {
         "name": "Palace_Balcony",
         "short_name": "Balcony",
         "map": "Palace",
-        "area": "Palace"
+        "area": "Palace",
+        "type": "bench"
     },
     "White_Palace_07": {
         "name": "Palace_Lamp_Pogo",
         "short_name": "Lamp_Pogo",
         "map": "Palace",
-        "area": "Palace"
+        "area": "Palace",
+        "type": null
     },
     "White_Palace_08": {
         "name": "Palace_Workshop",
         "short_name": "Workshop",
         "map": "Palace",
-        "area": "Palace"
+        "area": "Palace",
+        "type": null
     },
     "White_Palace_09": {
         "name": "Palace_Throne",
         "short_name": "Throne",
         "map": "Palace",
-        "area": "Palace"
+        "area": "Palace",
+        "type": null
     },
     "White_Palace_11": {
         "name": "Palace_Outside",
         "short_name": "Outside",
         "map": "Palace",
-        "area": "Palace"
+        "area": "Palace",
+        "type": null
     },
     "White_Palace_12": {
         "name": "Palace_Spike_Drop",
         "short_name": "Spike_Drop",
         "map": "Palace",
-        "area": "Palace"
+        "area": "Palace",
+        "type": null
     },
     "White_Palace_13": {
         "name": "Palace_Thorn_Jump",
         "short_name": "Thorn_Jump",
         "map": "Palace",
-        "area": "Palace"
+        "area": "Palace",
+        "type": null
     },
     "White_Palace_14": {
         "name": "Palace_Hell_Corridor",
         "short_name": "Hell_Corridor",
         "map": "Palace",
-        "area": "Palace"
+        "area": "Palace",
+        "type": null
     },
     "White_Palace_15": {
         "name": "Palace_Caged_Lever",
         "short_name": "Caged_Lever",
         "map": "Palace",
-        "area": "Palace"
+        "area": "Palace",
+        "type": null
     },
     "White_Palace_16": {
         "name": "Palace_Saw_Climb",
         "short_name": "Saw_Climb",
         "map": "Palace",
-        "area": "Palace"
+        "area": "Palace",
+        "type": null
     },
     "White_Palace_17": {
         "name": "POP_Lever",
         "short_name": "POP_Lever",
         "map": "Palace",
-        "area": "POP"
+        "area": "POP",
+        "type": null
     },
     "White_Palace_18": {
         "name": "POP_Entrance",
         "short_name": "POP_Entrance",
         "map": "Palace",
-        "area": "POP"
+        "area": "POP",
+        "type": null
     },
     "White_Palace_19": {
         "name": "POP_Vertical",
         "short_name": "POP_Vertical",
         "map": "Palace",
-        "area": "POP"
+        "area": "POP",
+        "type": null
     },
     "White_Palace_20": {
         "name": "POP_Final",
         "short_name": "POP_Final",
         "map": "Palace",
-        "area": "POP"
+        "area": "POP",
+        "type": null
     },
     "Dream_Final": {
         "name": "Egg_Radiance",
         "short_name": "Egg_Radiance",
         "map": "Crossroads",
-        "area": "Black_Egg"
+        "area": "Black_Egg",
+        "type": null
     },
     "Room_Final_Boss_Atrium": {
         "name": "Egg_Bench",
         "short_name": "Egg_Bench",
         "map": "Crossroads",
-        "area": "Black_Egg"
+        "area": "Black_Egg",
+        "type": "bench"
     },
     "Room_Final_Boss_Core": {
         "name": "Egg_Hollow_Knight",
         "short_name": "Egg_Hollow_Knight",
         "map": "Crossroads",
-        "area": "Black_Egg"
+        "area": "Black_Egg",
+        "type": null
     },
     "Grimm_Divine": {
         "name": "Grimm_Divine",
         "short_name": "Divine",
         "map": "Grimm",
-        "area": "Grimm"
+        "area": "Grimm",
+        "type": "shop"
     },
     "Grimm_Main_Tent": {
         "name": "Grimm_Tent",
         "short_name": "Tent",
         "map": "Grimm",
-        "area": "Grimm"
+        "area": "Grimm",
+        "type": null
     },
     "Grimm_Nightmare": {
         "name": "Grimm_NKG",
         "short_name": "NKG",
         "map": "Grimm",
-        "area": "Grimm"
+        "area": "Grimm",
+        "type": null
     },
     "Dream_01_False_Knight": {
         "name": "Dream_Failed_Champion",
         "short_name": "Failed_Champion",
         "map": "Dream",
-        "area": "Dream"
+        "area": "Dream",
+        "type": null
     },
     "Dream_02_Mage_Lord": {
         "name": "Dream_Soul_Tyrant",
         "short_name": "Soul_Tyrant",
         "map": "Dream",
-        "area": "Dream"
+        "area": "Dream",
+        "type": null
     },
     "Dream_03_Infected_Knight": {
         "name": "Dream_Lost_Kin",
         "short_name": "Lost_Kin",
         "map": "Dream",
-        "area": "Dream"
+        "area": "Dream",
+        "type": null
     },
     "Dream_04_White_Defender": {
         "name": "Dream_White_Defender",
         "short_name": "White_Defender",
         "map": "Dream",
-        "area": "Dream"
+        "area": "Dream",
+        "type": null
     },
     "Dream_Abyss": {
         "name": "Dream_Abyss",
         "short_name": "Abyss",
         "map": "Dream",
-        "area": "Dream"
+        "area": "Dream",
+        "type": null
     },
     "Dream_Backer_Shrine": {
         "name": "Dream_Outside_Shrine",
         "short_name": "Outside_Shrine",
         "map": "Dream",
-        "area": "Dream"
+        "area": "Dream",
+        "type": null
     },
     "Dream_Guardian_Hegemol": {
         "name": "Dream_Herrah",
         "short_name": "Herrah",
         "map": "Dream",
-        "area": "Dream"
+        "area": "Dream",
+        "type": null
     },
     "Dream_Guardian_Lurien": {
         "name": "Dream_Lurien",
         "short_name": "Lurien",
         "map": "Dream",
-        "area": "Dream"
+        "area": "Dream",
+        "type": null
     },
     "Dream_Guardian_Monomon": {
         "name": "Dream_Monomon",
         "short_name": "Monomon",
         "map": "Dream",
-        "area": "Dream"
+        "area": "Dream",
+        "type": null
     },
     "Dream_Mighty_Zote": {
         "name": "Dream_Grey_Prince_Zote",
         "short_name": "Grey_Prince_Zote",
         "map": "Dream",
-        "area": "Dream"
+        "area": "Dream",
+        "type": null
     },
     "Dream_Nailcollection": {
         "name": "Dream_Nail",
         "short_name": "Nail",
         "map": "Dream",
-        "area": "Dream"
+        "area": "Dream",
+        "type": null
     },
     "Dream_Room_Believer_Shrine": {
         "name": "Dream_Shrine_of_Believers",
         "short_name": "Shrine_of_Believers",
         "map": "Dream",
-        "area": "Dream"
+        "area": "Dream",
+        "type": null
     },
     "GG_Atrium": {
         "name": "Godhome_Atrium",
         "short_name": "Atrium",
         "map": "Godhome",
-        "area": "Godhome"
+        "area": "Godhome",
+        "type": "bench"
     },
     "GG_Atrium_Roof": {
         "name": "Godhome_Roof",
         "short_name": "Roof",
         "map": "Godhome",
-        "area": "Godhome"
+        "area": "Godhome",
+        "type": "bench"
     },
     "GG_Blue_Room": {
         "name": "Godhome_Lifeblood",
         "short_name": "Lifeblood",
         "map": "Godhome",
-        "area": "Godhome"
+        "area": "Godhome",
+        "type": null
     },
     "GG_Land_Of_Storms": {
         "name": "Godhome_Land_Of_Storms",
         "short_name": "Land_Of_Storms",
         "map": "Godhome",
-        "area": "Godhome"
+        "area": "Godhome",
+        "type": null
     },
     "GG_Mighty_Zote": {
         "name": "Invincible_Fearless_Sensual_Mysterious_Enchanting_Vigorous_Diligent_Overwhelming_Gorgeous_Passionate_Terrifying_Beautiful_Zote",
         "short_name": "Invincible_Fearless_Sensual_Mysterious_Enchanting_Vigorous_Diligent_Overwhelming_Gorgeous_Passionate_Terrifying_Beautiful_Zote",
         "map": "Godhome",
-        "area": "Godhome"
+        "area": "Godhome",
+        "type": null
     },
     "GG_Unlock_Wastes": {
         "name": "Godhome_Godtuner",
         "short_name": "Godtuner",
         "map": "Godhome",
-        "area": "Godhome"
+        "area": "Godhome",
+        "type": null
     },
     "GG_Workshop": {
         "name": "Godhome_Hall_Of_Gods",
         "short_name": "Hall_Of_Gods",
         "map": "Godhome",
-        "area": "Godhome"
+        "area": "Godhome",
+        "type": null
     }
 }

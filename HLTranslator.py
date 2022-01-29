@@ -5,9 +5,10 @@ import requests  # Get translator from github
 import os  # Check if files exist, create directory and find helperlog
 import datetime  # Print update time
 import json  # To read dictionary
+import webbrowser  # To open graph in browser
+from pyvis import network as nt  # To draw graph
 # import shutil  # To delete directory, only for testing purposes
-# from pyvis import network as nt
-# from tkinterweb import HtmlFrame as HF
+# from tkinterweb import HtmlFrame as HF  # For tkinter graph implementation
 
 # For text widget
 TEXT_HEIGHT = 20
@@ -15,6 +16,8 @@ TEXT_WIDTH = 22
 # Helper log paths
 PATH = os.getenv('LOCALAPPDATA') + \
     'Low/Team Cherry/Hollow Knight/Randomizer 4/Recent/HelperLog.txt'
+SETTINGSPATH = os.getenv('LOCALAPPDATA') + \
+    'Low/Team Cherry/Hollow Knight/Randomizer 4/Recent/settings.txt'
 NEWPATH = os.getenv(
     'LOCALAPPDATA') + 'Low/Team Cherry/Hollow Knight/Randomizer 4/Recent/HelperLogTrans.txt'
 # Path for files used by program
@@ -32,11 +35,9 @@ SETTINGS = ['UNCHECKED REACHABLE LOCATIONS',
             'UNCHECKED REACHABLE TRANSITIONS',
             'CHECKED TRANSITIONS',
             'RESPAWNING ITEMS',
-            'REGION NAMES',
             'ADD REVERSED TRANSITIONS']
 # To make stuff automatic, for future updates maybe
-NB_TO_IGNORE = 2
-MAP_OPTION_POS = -2
+NB_TO_IGNORE = 1
 
 
 def errorBoxQuit(string):
@@ -112,127 +113,136 @@ def updateLoop():
     '''Main loop, repeats until window is closed'''
     global prevToWrite
     global toWrite
-    # global prevCheckedBloc
-    # global checkedBloc
+    global prevCheckedBloc
+    global checkedBloc
 
     if running:
         # Get what to write
         settingsTab = updateSettings()
 
         # Get helper log contents
+        helperLogFound = False
         try:
             with open(PATH, 'r') as f:
                 helperLog = f.read()
+            helperLogFound = True
         except Exception as e:
-            errorBoxQuit('HelperLog not found. ' + str(e))
+            addText('\nHelperLog not found.')
 
-        blocs = helperLog.split('\n\n')
-        toWrite = ''
+        if helperLogFound:
+            blocs = helperLog.split('\n\n')
+            toWrite = ''
 
-        for bloc in blocs:
-            # Add only wanted blocs
-            if bloc.split('\n')[0] in settingsTab:
-                if bloc.split('\n')[0] in \
-                        ['CHECKED TRANSITIONS', 'UNCHECKED REACHABLE TRANSITIONS']:
-                    for word in translationDict:
-                        # find position of word and next '['
-                        if word in bloc:
-                            wordPos = bloc.index(word)
-                            bracketPos = bloc.index('[', wordPos)
-                            if not globals()[varnames[MAP_OPTION_POS]].get():
-                                # This is a map rando
-                                mapName = translationDict[word]['map']
-                                shortName = translationDict[word]['short_name']
-                                newName = f"{mapName}[{shortName}]"
-                                bloc = bloc.replace(
-                                    bloc[wordPos:bracketPos],
-                                    newName)
-                            else:
-                                # This is an area rando
-                                areaName = translationDict[word]['area']
-                                shortName = translationDict[word]['short_name']
-                                newName = f"{areaName}[{shortName}]"
-                                bloc = \
-                                    bloc.replace(
+            for bloc in blocs:
+                # Add only wanted blocs
+                if bloc.split('\n')[0] in settingsTab:
+                    if bloc.split('\n')[0] in \
+                            ['CHECKED TRANSITIONS', 'UNCHECKED REACHABLE TRANSITIONS']:
+                        for word in translationDict:
+                            # find position of word and next '['
+                            if word in bloc:
+                                wordPos = bloc.index(word)
+                                bracketPos = bloc.index('[', wordPos)
+                                if mode == 'RoomRandomizer':
+                                    newName = translationDict[word]['name']
+                                    bloc = bloc.replace(
                                         bloc[wordPos:bracketPos],
                                         newName)
+                                elif mode == 'MapAreaRandomizer':  # TODO check name of mode
+                                    # This is a map rando
+                                    mapName = translationDict[word]['map']
+                                    shortName = translationDict[word]['short_name']
+                                    newName = f"{mapName}[{shortName}]"
+                                    bloc = bloc.replace(
+                                        bloc[wordPos:bracketPos],
+                                        newName)
+                                else:
+                                    # This is an area rando
+                                    areaName = translationDict[word]['area']
+                                    shortName = translationDict[word]['short_name']
+                                    newName = f"{areaName}[{shortName}]"
+                                    bloc = \
+                                        bloc.replace(
+                                            bloc[wordPos:bracketPos],
+                                            newName)
 
-                    splitbloc = bloc.split('\n')
-                    blocName = splitbloc[0]
-                    lines = splitbloc[1:]
-                    if blocName == "UNCHECKED REACHABLE TRANSITIONS":
-                        newbloc = blocName + '\n' + '\n'.join(sorted(lines))
-                        toWrite += newbloc + '\n\n'
-                    elif blocName == "CHECKED TRANSITIONS":
-                        # Get all reversable transitions
-                        transTab = list(map(
-                            lambda x: x[2:].split('  -->  '),
-                            lines))
-                        reversableTab = []
-                        if not globals()[varnames[-1]].get():
-                            cyclebloc = 'REVERSABLE ' + blocName
-                        else:
-                            cyclebloc = 'REPEATED REVERSABLE ' + blocName
+                        splitbloc = bloc.split('\n')
+                        blocName = splitbloc[0]
+                        lines = splitbloc[1:]
+                        if blocName == "UNCHECKED REACHABLE TRANSITIONS":
+                            newbloc = blocName + '\n' + \
+                                '\n'.join(sorted(lines))
+                            toWrite += newbloc + '\n\n'
+                        elif blocName == "CHECKED TRANSITIONS":
+                            # Get all reversable transitions
+                            transTab = list(map(
+                                lambda x: x[2:].split('  -->  '),
+                                lines))
+                            reversableTab = []
+                            if not globals()[varnames[-1]].get():
+                                cyclebloc = 'REVERSABLE ' + blocName
+                            else:
+                                cyclebloc = 'REPEATED REVERSABLE ' + blocName
 
-                        for trans in transTab:
-                            outOfLogic = '*' in trans[0]
-                            newTrans = removeAsterix(outOfLogic, trans)
-                            reverseTrans = addAsterix(outOfLogic, newTrans)
+                            for trans in transTab:
+                                outOfLogic = '*' in trans[0]
+                                newTrans = removeAsterix(outOfLogic, trans)
+                                reverseTrans = addAsterix(outOfLogic, newTrans)
 
-                            origin = newTrans[0]
-                            for trans2 in transTab:
-                                newTrans2 = [trans2[0].replace(
-                                    '*', ''), trans2[1]]
-                                if origin == newTrans2[1] and trans not in reversableTab \
-                                        and reverseTrans not in reversableTab:
-                                    reversableTab.append(trans)
-                                    if globals()[varnames[-1]].get():
-                                        reversableTab.append(reverseTrans)
+                                origin = newTrans[0]
+                                for trans2 in transTab:
+                                    newTrans2 = [trans2[0].replace(
+                                        '*', ''), trans2[1]]
+                                    if origin == newTrans2[1] and trans not in reversableTab \
+                                            and reverseTrans not in reversableTab:
+                                        reversableTab.append(trans)
+                                        if globals()[varnames[-1]].get():
+                                            reversableTab.append(reverseTrans)
 
-                        def skipAst(x):
-                            return x if x[0][0] != '*' else [x[0][1:], x[1]]
-                        reversableTab = sorted(reversableTab, key=skipAst)
+                            def skipAst(x):
+                                return x if x[0][0] != '*' else [x[0][1:], x[1]]
+                            reversableTab = sorted(reversableTab, key=skipAst)
 
-                        for trans in reversableTab:
-                            outOfLogic = '*' in trans[0]
-                            newTrans = removeAsterix(outOfLogic, trans)
-                            reverseTrans = addAsterix(outOfLogic, newTrans)
+                            for trans in reversableTab:
+                                outOfLogic = '*' in trans[0]
+                                newTrans = removeAsterix(outOfLogic, trans)
+                                reverseTrans = addAsterix(outOfLogic, newTrans)
 
-                            if trans in transTab:
-                                transTab.remove(trans)
-                            if reverseTrans in transTab:
-                                transTab.remove(reverseTrans)
-                            cyclebloc += '\n  ' + '  <->  '.join(trans)
+                                if trans in transTab:
+                                    transTab.remove(trans)
+                                if reverseTrans in transTab:
+                                    transTab.remove(reverseTrans)
+                                cyclebloc += '\n  ' + '  <->  '.join(trans)
 
-                        toWrite += cyclebloc + '\n\n'
+                            toWrite += cyclebloc + '\n\n'
 
-                        onewaybloc = 'ONEWAY ' + blocName
-                        for x in transTab:
-                            onewaybloc += '\n  ' + '  -->  '.join(x)
-                        toWrite += onewaybloc + '\n\n'
+                            onewaybloc = 'ONEWAY ' + blocName
+                            for x in transTab:
+                                onewaybloc += '\n  ' + '  -->  '.join(x)
+                            toWrite += onewaybloc + '\n\n'
 
-                        checkedBloc = cyclebloc + onewaybloc
-                else:
-                    toWrite += bloc + '\n\n'
+                            checkedBloc = cyclebloc + onewaybloc
+                    else:
+                        toWrite += bloc + '\n\n'
 
-        if toWrite != prevToWrite:  # We need to update!
-            # Get update time
-            current_time = datetime.datetime.now().strftime("%H:%M:%S")
-            addText(f'\nUpdated at {current_time}.')
+            if toWrite != prevToWrite:  # We need to update!
+                # Get update time
+                current_time = datetime.datetime.now().strftime("%H:%M:%S")
+                addText(f'\nUpdated at {current_time}.')
 
-            # Write file
-            try:
-                with open(NEWPATH, 'w') as f:
-                    f.write(toWrite)
-            except Exception as e:
-                errorBoxQuit('Cannot write translated file. ' + str(e))
+                # Write file
+                try:
+                    with open(NEWPATH, 'w') as f:
+                        f.write(toWrite)
+                except Exception as e:
+                    errorBoxQuit('Cannot write translated file. ' + str(e))
 
-        prevToWrite = toWrite
+            prevToWrite = toWrite
 
-        # if checkedBloc != prevCheckedBloc:
-        #     drawGraph()
-
-        # prevCheckedBloc = checkedBloc
+            # To know when to update graph
+            if checkedBloc != prevCheckedBloc:
+                drawGraph()
+            prevCheckedBloc = checkedBloc
     root.after(100, updateLoop)  # Recursion loop
 
 
@@ -263,135 +273,157 @@ def readConfig():
 
     return configFile, configString
 
+### COMMENTED TO AVOID THE RISK OF LOSING THE DICTIONARY ###
+# def createJSON():
+#     """This creates a good dictionary but region names may not be right"""
+#     '''THIS IS NEVER USED, but still useful I guess'''
+#     if not os.path.isfile(JSONPATH):
+#         # Use XML to create JSON
+#         if not os.path.isfile(XMLPATH):
+#             # Need to download XML
+#             addText('Downloading XML.\n')
+#             try:
+#                 r = requests.get(XMLURL, allow_redirects=True)
+#                 open(XMLPATH, 'wb').write(r.content)
+#             except Exception as e:
+#                 errorBoxQuit(
+#                     "Could not find or download TranslatorDictionary.xml. " + str(e))
 
-def createJSON():
-    """This creates a good dictionary but region names may not be right"""
-    if not os.path.isfile(JSONPATH):
-        # Use XML to create JSON
-        if not os.path.isfile(XMLPATH):
-            # Need to download XML
-            addText('Downloading XML.\n')
-            try:
-                r = requests.get(XMLURL, allow_redirects=True)
-                open(XMLPATH, 'wb').write(r.content)
-            except Exception as e:
-                errorBoxQuit(
-                    "Could not find or download TranslatorDictionary.xml. " + str(e))
+#         # Read XML and create dictionary from it
+#         with open(XMLPATH) as f:
+#             dictStr = f.read()
 
-        # Read XML and create dictionary from it
-        with open(XMLPATH) as f:
-            dictStr = f.read()
+#         # Isolate old names
+#         oldSplit = dictStr.split('<oldName>')
+#         oldNames = []
+#         for line in oldSplit:
+#             if '</oldName>' in line:
+#                 oldNames.append(line.split('</oldName>')[0])
+#         oldSplit = dictStr.split('<newName>')
+#         # Isolate new names
+#         newNames = []
+#         for line in oldSplit:
+#             if '</newName>' in line:
+#                 newNames.append(line.split('</newName>')[0])
+#         assert len(oldNames) == len(newNames)  # just in case
 
-        # Isolate old names
-        oldSplit = dictStr.split('<oldName>')
-        oldNames = []
-        for line in oldSplit:
-            if '</oldName>' in line:
-                oldNames.append(line.split('</oldName>')[0])
-        oldSplit = dictStr.split('<newName>')
-        # Isolate new names
-        newNames = []
-        for line in oldSplit:
-            if '</newName>' in line:
-                newNames.append(line.split('</newName>')[0])
-        assert len(oldNames) == len(newNames)  # just in case
+#         # Create dictionary
+#         locDict = {}
 
-        # Create dictionary
-        locDict = {}
+#         # Fill dictionary with extracted names
+#         # TODO this code could be way more clean, maybe in another function
+#         # Could be hardcoded but wouldn't fit with the goal of building the files
+#         for i in range(len(oldNames)):
+#             room_name = newNames[i]
+#             room_name_no_area = '_'.join(newNames[i].split('_')[1:])
+#             map_name = newNames[i].split('_')[0]
+#             region_name = ''
+#             if map_name not in ["Dirtmouth", "Crossroads", "Greenpath", "Fungal",
+#                                 "Fog", "Cliffs", "Crystal", "Basin", "Abyss",
+#                                 "Grounds", "Edge", "City", "Hive", "Waterways",
+#                                 "Deepnest", "Gardens", "Palace", "POP", "Egg",
+#                                 "Grimm", "Dream", "Godhome"]:
+#                 room_name_no_area = room_name
+#                 map_name = room_name
+#             if room_name == 'Dirtmouth':
+#                 room_name_no_area = room_name
+#             if map_name.split('_')[0] == "Invincible":
+#                 map_name = "Godhome"
+#             if room_name in ['Black_Egg_Temple', 'Salubra']:
+#                 map_name = "Crossroads"
+#                 if room_name in 'Black_Egg_Temple':
+#                     region_name = 'Black_Egg'
+#             if room_name in ['Sly', 'Sly_Basement', 'Iselda', 'Bretta',
+#                              'Bretta_Basement', 'Jiji', 'Jinn']:
+#                 map_name = "Dirtmouth"
+#             if map_name == 'Egg':
+#                 room_name_no_area = room_name
+#                 region_name = 'Black_Egg'
+#                 map_name = 'Crossroads'
+#             if map_name == 'POP':
+#                 region_name = map_name
+#                 room_name_no_area = room_name
+#                 map_name = 'Palace'
+#             if room_name == "King's_Pass":
+#                 region_name = map_name
+#                 map_name = 'Dirtmouth'
+#             if room_name == 'City_Broken_Elevator':
+#                 map_name = 'Waterways'
+#             if room_name == 'Basin_Broken_Bridge':
+#                 map_name = 'Waterways'
 
-        # Fill dictionary with extracted names
-        # TODO this code could be way more clean, maybe in another function
-        # Could be hardcoded but wouldn't fit with the goal of building the files
-        for i in range(len(oldNames)):
-            room_name = newNames[i]
-            room_name_no_area = '_'.join(newNames[i].split('_')[1:])
-            map_name = newNames[i].split('_')[0]
-            region_name = ''
-            if map_name not in ["Dirtmouth", "Crossroads", "Greenpath", "Fungal",
-                                "Fog", "Cliffs", "Crystal", "Basin", "Abyss",
-                                "Grounds", "Edge", "City", "Hive", "Waterways",
-                                "Deepnest", "Gardens", "Palace", "POP", "Egg",
-                                "Grimm", "Dream", "Godhome"]:
-                room_name_no_area = room_name
-                map_name = room_name
-            if room_name == 'Dirtmouth':
-                room_name_no_area = room_name
-            if map_name.split('_')[0] == "Invincible":
-                map_name = "Godhome"
-            if room_name in ['Black_Egg_Temple', 'Salubra']:
-                map_name = "Crossroads"
-                if room_name in 'Black_Egg_Temple':
-                    region_name = 'Black_Egg'
-            if room_name in ['Sly', 'Sly_Basement', 'Iselda', 'Bretta',
-                             'Bretta_Basement', 'Jiji', 'Jinn']:
-                map_name = "Dirtmouth"
-            if map_name == 'Egg':
-                room_name_no_area = room_name
-                region_name = 'Black_Egg'
-                map_name = 'Crossroads'
-            if map_name == 'POP':
-                region_name = map_name
-                room_name_no_area = room_name
-                map_name = 'Palace'
-            if room_name == "King's_Pass":
-                region_name = map_name
-                map_name = 'Dirtmouth'
-            if room_name == 'City_Broken_Elevator':
-                map_name = 'Waterways'
+#             # TODO: add region randomizer names
+#             if region_name == '':
+#                 region_name = map_name
 
-            # TODO: add region randomizer names
-            if region_name == '':
-                region_name = map_name
+#             locDict[oldNames[i]] = {}
 
-            locDict[oldNames[i]] = {}
+#             locDict[oldNames[i]]['name'] = room_name
+#             locDict[oldNames[i]]['short_name'] = room_name_no_area
+#             locDict[oldNames[i]]['map'] = map_name
+#             locDict[oldNames[i]]['area'] = region_name
 
-            locDict[oldNames[i]]['name'] = room_name
-            locDict[oldNames[i]]['short_name'] = room_name_no_area
-            locDict[oldNames[i]]['map'] = map_name
-            locDict[oldNames[i]]['area'] = region_name
-
-        # Create JSON file
-        addText('Creating JSON file.\n')
-        with open(JSONPATH, "w") as outfile:
-            json.dump(locDict, outfile, indent=4)
+#         # Create JSON file
+#         addText('Creating JSON file.\n')
+#         with open(JSONPATH, "w") as outfile:
+#             json.dump(locDict, outfile, indent=4)
 
 
-# def drawGraph():
-#     try:
-#         with open(PATH, 'r') as f:
-#             helperLog = f.read()
-#     except Exception as e:
-#         errorBoxQuit('HelperLog not found. ' + str(e))
+def drawGraph():
+    try:
+        with open(PATH, 'r') as f:
+            helperLog = f.read()
+    except Exception as e:
+        errorBoxQuit('HelperLog not found. ' + str(e))
 
-#     blocs = helperLog.split('\n\n')
+    blocs = helperLog.split('\n\n')
 
-#     tab = []
-#     for bloc in blocs:
-#         if bloc.split('\n')[0] == 'CHECKED TRANSITIONS':
-#             lines = bloc.split('\n')[1:]
-#             for line in lines:
-#                 tab.append(line[2:].split('  -->  '))
+    tab = []
+    for bloc in blocs:
+        if bloc.split('\n')[0] == 'CHECKED TRANSITIONS':
+            lines = bloc.split('\n')[1:]
+            for line in lines:
+                tab.append(line[2:].split('  -->  '))
 
-#     net = nt.Network(directed=True)
-#     net.set_edge_smooth('dynamic')
-#     for connection in tab:
-#         loc1 = connection[0].replace('*', '').split('[')[0]
-#         loc2 = connection[1].replace('*', '').split('[')[0]
-#         if not globals()[varnames[MAP_OPTION_POS]].get():
-#             # this is a map rando
-#             map_connection = [translationDict[loc1]
-#                               ['map'], translationDict[loc2]['map']]
-#         else:
-#             # this is an area rando
-#             map_connection = [translationDict[loc1]
-#                               ['area'], translationDict[loc2]['area']]
-#         net.add_nodes(map_connection, title=map_connection)
-#         net.add_edge(
-#             *map_connection, title=connection[0].replace(loc1, translationDict[loc1]['short_name']))
+    # TODO add known transitions, such as City to Crossroads and City to Grounds
+    # if mode == 'MapAreaRandomizer':
+    #     tab.append()
 
-#     net.save_graph(GRAPHPATH)
+    net = nt.Network(directed=True)
+    net.set_edge_smooth('dynamic')
+    for connection in tab:
+        loc1 = connection[0].replace('*', '').split('[')[0]
+        loc2 = connection[1].split('[')[0]
+        print(translationDict[loc1])
+        if mode == "RoomRandomizer":
+            # this is a room rando
+            realConnection = [translationDict[loc1]
+                              ['name'], translationDict[loc2]['name']]
+            displayNames = [translationDict[loc1]
+                            ['short_name'], translationDict[loc2]['short_name']]
+            title = connection[0].split('[')[1].split(']')[0]
+        elif mode == "MapAreaRandomizer":
+            # this is a map rando
+            realConnection = [translationDict[loc1]
+                              ['map'], translationDict[loc2]['map']]
+            displayNames = realConnection
+            title = connection[0].replace(
+                loc1, translationDict[loc1]['short_name'])
+        else:
+            # this is an area rando
+            realConnection = [translationDict[loc1]
+                              ['area'], translationDict[loc2]['area']]
+            displayNames = realConnection
+            title = connection[0].replace(
+                loc1, translationDict[loc1]['short_name'])
 
-#     addText('\nRefresh graph page.')
+        net.add_nodes(displayNames, title=realConnection)
+        net.add_edge(*displayNames, title=title,
+                     color='red' if '*' in title else 'blue')
+
+    net.save_graph(GRAPHPATH)
+
+    addText('\nRefresh graph page.')
 
 
 # def load_html():
@@ -402,20 +434,26 @@ def createJSON():
 #     return htmlFile
 
 
-# def openGraph():
-#     addText('\nOpening graph.')
-#     newWindow = tk.Toplevel(root)
-#     newWindow.title('Graph window')
-#     graph_url = 'localhost/' + os.path.abspath(GRAPHPATH).replace('\\', '/')
-#     print(graph_url)
-#     frame = HF(newWindow, messages_enabled=True)
-#     # frame.load_file(graph_url, force=True)
-#     frame.load_html(load_html())
-#     frame.pack()
-#     frame.on_done_loading(addText)
-#     # graphWindow = webview.create_window('HK Graph')
-#     # webview.start(load_html, [graphWindow])
-#     # webbrowser.open(graph_url, new=1)
+def openGraph():
+    addText('\nOpening graph.')
+    graph_url = 'file://localhost/' + \
+        os.path.abspath(GRAPHPATH).replace('\\', '/')
+    webbrowser.get('windows-default').open(graph_url, new=1)
+
+    ### Tkinter implementation, doesn't work ###
+    # addText('\nOpening graph.')
+    # newWindow = tk.Toplevel(root)
+    # newWindow.title('Graph window')
+    # graph_url = 'localhost/' + os.path.abspath(GRAPHPATH).replace('\\', '/')
+    # print(graph_url)
+    # frame = HF(newWindow, messages_enabled=True)
+    # # frame.load_file(graph_url, force=True)
+    # frame.load_html(load_html())
+    # frame.pack()
+    # frame.on_done_loading(addText)
+    # # graphWindow = webview.create_window('HK Graph')
+    # # webview.start(load_html, [graphWindow])
+    # # webbrowser.open(graph_url, new=1)
 
 
 if __name__ == '__main__':
@@ -427,6 +465,14 @@ if __name__ == '__main__':
     #     shutil.rmtree(INNERPATH)
     if not os.path.isdir(INNERPATH):
         os.mkdir(INNERPATH)
+
+    with open(SETTINGSPATH) as f:
+        settings = f.read()
+    modeLine = settings.split('\n')[4]
+    mode = modeLine.split('"')[3]
+    constraintLine = settings.split('\n')[5]
+    constraint = constraintLine.split('"')[3]
+    print(mode, constraint)
 
     running = True
 
@@ -458,15 +504,15 @@ if __name__ == '__main__':
         root, textvariable=toggle_text, command=toggleTrans)
     openFile_button = tk.Button(root, text='Open file', command=openFile)
     exit_button = tk.Button(root, text='Exit', command=root.quit)
-    # open_graph_button = tk.Button(
-    #     root, text='Open rando graph', command=openGraph)
+    open_graph_button = tk.Button(
+        root, text='Open rando graph', command=openGraph)
     main_stext = st.ScrolledText(root, width=TEXT_WIDTH, height=TEXT_HEIGHT)
 
     # Place buttons and text
     toggle_button.pack(in_=top)
     openFile_button.pack(in_=mid, side=tk.LEFT)
     exit_button.pack(in_=mid, side=tk.LEFT)
-    # open_graph_button.pack(in_=midBot)
+    open_graph_button.pack(in_=midBot)
     main_stext.pack(in_=bot)
 
     # Create checkboxes, probably not a good idea to do so automatically
@@ -489,11 +535,13 @@ if __name__ == '__main__':
     # Create JSON dictionary
     # This is where all the region logic is
     # ***IMPORTANT*** This is very messy and I will maybe stop updating it...
-    if os.path.isfile(GOODJSONPATH):
-        json_to_read = GOODJSONPATH
-    else:
-        createJSON()
-        json_to_read = JSONPATH
+    # if os.path.isfile(GOODJSONPATH):
+    #     json_to_read = GOODJSONPATH
+    # else:
+    #     createJSON()
+    #     json_to_read = JSONPATH
+
+    json_to_read = JSONPATH
 
     # Create dictionary from JSON file
     translationDict = {}
@@ -513,7 +561,7 @@ if __name__ == '__main__':
 
     # Start main function loop
     prevToWrite = ''
-    # prevCheckedBloc = ''
+    prevCheckedBloc = ''
     addText('Translation started.')
     root.after(10, updateLoop)
     root.mainloop()
